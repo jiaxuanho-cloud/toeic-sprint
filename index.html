@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多益半年衝刺 · 雙人學習站</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="css">
+:root{--bg:#f5f3ee;--card:#fff;--ink:#1d2433;--sub:#667085;--line:#e6e2d8;--a:#2a8f83;--a-soft:#e3f2ef;--b:#d9822b;--b-soft:#fbeedd;--ok:#2e8b57;--ok-soft:#e5f4ea;--bad:#c94a3a;--bad-soft:#fbe7e3;--accent:#33415c;--r:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans TC",system-ui,sans-serif;font-size:15px;line-height:1.6}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:980px;margin:0 auto;padding:16px 16px 90px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+header h1{font-size:19px;margin:0;font-weight:700;letter-spacing:.2px}
+header .sp{flex:1}
+.who{display:flex;gap:6px;background:#ebe7dd;padding:4px;border-radius:999px}
+.who button{border:0;background:transparent;padding:5px 14px;border-radius:999px;color:var(--sub);font-weight:600}
+.who button.on.a{background:var(--a);color:#fff}.who button.on.b{background:var(--b);color:#fff}
+.iconbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 10px;color:var(--ink)}
+nav{display:flex;gap:4px;overflow-x:auto;margin:0 -16px 16px;padding:0 16px;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--sub);padding:8px 14px;border-radius:10px;font-weight:600;font-size:14px}
+nav a.on{background:var(--ink);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.card h2{font-size:17px;margin:0 0 10px}.card h3{font-size:15px;margin:14px 0 6px}
+.muted{color:var(--sub);font-size:13.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.hero{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.big{font-size:34px;font-weight:700;line-height:1}
+.stat{min-width:120px}.stat .muted{margin-top:4px}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12.5px;font-weight:600;background:#eef0f4;color:var(--accent)}
+.pill.a{background:var(--a-soft);color:var(--a)}.pill.b{background:var(--b-soft);color:var(--b)}
+.task{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.task:first-of-type{border-top:0}
+.chk{width:24px;height:24px;border-radius:7px;border:2px solid #c9c4b8;flex:none;display:grid;place-items:center;background:#fff;color:#fff;font-size:14px;padding:0}
+.chk.on{background:var(--ok);border-color:var(--ok)}
+.task .t{flex:1}.task .t.done{color:var(--sub);text-decoration:line-through}
+.btn{border:0;background:var(--ink);color:#fff;border-radius:10px;padding:8px 16px;font-weight:600}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:5px 12px;font-size:13.5px}
+.btn.a{background:var(--a)}.btn.b{background:var(--b)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dots{display:flex;gap:5px}
+.dot{width:26px;height:26px;border-radius:8px;background:#eeeae1;display:grid;place-items:center;font-size:11px;color:var(--sub)}
+.dot.a{background:var(--a);color:#fff}.dot.b{background:var(--b);color:#fff}.dot.today{outline:2px solid var(--ink);outline-offset:1px}
+.partner{border-left:4px solid var(--a)}.partner.b{border-left-color:var(--b)}
+.bar{height:8px;background:#eeeae1;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ink)}
+.flash{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line);border-radius:var(--r);background:#fffdf8;padding:22px;cursor:pointer;user-select:none}
+.flash .w{font-size:32px;font-weight:700}
+.flash .pos{color:var(--sub);font-size:14px}
+.flash .zh{font-size:21px;margin-top:10px;font-weight:600}
+.flash .ex{margin-top:10px;color:#3b4456;font-style:italic}
+.rate{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.rate button{border:0;border-radius:10px;padding:11px;font-weight:600}
+.r0{background:var(--bad-soft);color:var(--bad)}.r1{background:#f3efe2;color:#7a6520}.r2{background:var(--ok-soft);color:var(--ok)}
+.q{font-size:16px;margin:4px 0 12px;font-weight:500}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:#a9b0bf}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}.opt.bad{background:var(--bad-soft);border-color:var(--bad)}.opt.pick{border-color:var(--ink);background:#f1f3f7}
+.opt:disabled{cursor:default}
+.ex{background:#f7f5ef;border-radius:10px;padding:10px 14px;margin-top:10px;font-size:14px}
+.lesson{background:#f7f5ef;border-radius:10px;padding:12px 16px;font-size:14.5px}
+.lesson b{color:var(--accent)}
+.unit{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.unit:first-child{border-top:0}.unit .n{width:30px;height:30px;border-radius:9px;background:#eeeae1;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.unit .n.now{background:var(--ink);color:#fff}
+.passage{background:#fffdf8;border:1px solid var(--line);border-radius:10px;padding:14px 16px;white-space:pre-wrap;font-size:14.5px}
+.script{font-size:14px;background:#f7f5ef;border-radius:10px;padding:10px 14px}
+.script p{margin:4px 0}
+.qset{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{padding:8px 6px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12.5px;color:var(--sub);font-weight:600;border-top:0}
+tr.now td{background:#fff8e6}
+.phase{border-radius:12px;padding:12px 14px;margin-bottom:10px;background:#f7f5ef}
+.syncbar{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;background:var(--ink);color:#fff;border-radius:14px;padding:10px 12px 10px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:20;max-width:calc(100% - 24px);font-size:14px}
+.syncbar .btn{background:#fff;color:var(--ink)}
+.modal{position:fixed;inset:0;background:rgba(20,24,33,.45);display:grid;place-items:center;z-index:30;padding:16px}
+.modal .card{max-width:440px;width:100%;margin:0;max-height:90vh;overflow:auto}
+label.f{display:block;margin:10px 0 4px;font-size:13px;color:var(--sub);font-weight:600}
+input,select{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 16px;border-radius:10px;z-index:40;font-size:14px}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 14px;font-weight:600;color:var(--sub)}
+.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.speed{display:flex;gap:4px}.speed button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:3px 9px;font-size:13px}
+.speed button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700}
+.zh-s{display:block;color:#6b5a2e;font-size:13.5px;margin-top:2px}
+.exz{margin-top:6px;color:#6b5a2e;font-size:15px}
+textarea{box-sizing:border-box}
+.note{border-left:3px solid var(--accent);padding:6px 12px;background:#f1f3f7;border-radius:0 10px 10px 0;font-size:14px;margin:10px 0}
+</style>
+<script id="state" type="application/json">{"v":1,"startDate":"2026-11-16","examDate":"2027-06-27","settingsAt":1794728965872,"users":{"a":{"name":"我","track":"adv","target":850,"log":{"2026-11-15":{"done":[],"busy":false}},"vocab":{},"wrong":[],"scores":{},"updatedAt":1794727655902},"b":{"name":"男友","track":"base","target":650,"log":{"2026-11-15":{"done":["grammar"],"busy":false}},"vocab":{},"wrong":["g0_0"],"scores":{"g0":75},"updatedAt":1794727762888}}}</script>
+</head><body><div id="app"></div>
+<script id="data">
+const VOCAB_RAW = {"base": "schedule|v./n.|安排；行程表|The interview is scheduled for 10 a.m. on Monday.|面試安排在星期一上午十點。\nappointment|n.|預約；約診|I have a dentist appointment on Friday afternoon.|我星期五下午有牙醫預約。\navailable|adj.|有空的；可取得的|Is Ms. Lin available to meet this afternoon?|林小姐今天下午有空見面嗎？\ndeliver|v.|運送；遞送|The package will be delivered tomorrow morning.|包裹明天早上會送達。\norder|n./v.|訂單；訂購|We ordered fifty chairs for the new office.|我們為新辦公室訂了五十張椅子。\nreceipt|n.|收據|Please keep your receipt if you want to return the item.|如果想退貨，請保留收據。\ninvoice|n.|請款單；發票|The invoice must be paid by the end of the month.|這張請款單必須在月底前付清。\ncustomer|n.|顧客|Customers can return items within 30 days.|顧客可在三十天內退貨。\nemployee|n.|員工|All employees must attend the safety training.|所有員工都必須參加安全訓練。\ndepartment|n.|部門|She works in the sales department.|她在業務部工作。\nconference|n.|研討會；大型會議|He will give a talk at the conference in Tokyo.|他將在東京的研討會上演講。\nreservation|n.|預訂|I'd like to make a reservation for two people.|我想預訂兩個人的位子。\npurchase|v./n.|購買|You can purchase tickets on our website.|您可以在我們的網站上購票。\ndiscount|n.|折扣|Members receive a 10 percent discount.|會員享有九折優惠。\nbudget|n.|預算|We are over budget this quarter.|我們這一季超出預算了。\nreport|n./v.|報告；報告|Please send me the sales report by noon.|請在中午前把銷售報告寄給我。\nsubmit|v.|提交|Submit the form by Friday.|請在星期五前繳交表格。\ncomplete|v./adj.|完成；完整的|The project was completed on time.|這個專案準時完成了。\ndeadline|n.|截止期限|The deadline for applications is March 1.|申請截止日是三月一日。\napply|v.|申請|She applied for the marketing position.|她應徵了行銷職位。\nposition|n.|職位|The position requires two years of experience.|這個職位需要兩年經驗。\nexperience|n.|經驗|Do you have any experience in customer service?|你有客服方面的經驗嗎？\ninterview|n./v.|面試|The job interview went very well.|這次求職面試非常順利。\nhire|v.|雇用|The company plans to hire ten new workers.|公司打算雇用十名新員工。\nresume|n.|履歷|Please attach your resume to the email.|請把履歷附在電子郵件中。\nsalary|n.|薪水|The salary depends on experience.|薪水依經驗而定。\ntraining|n.|訓練|New staff will receive two weeks of training.|新進員工會接受兩週的訓練。\ncontract|n.|合約|Both companies signed the contract yesterday.|兩家公司昨天簽了合約。\nclient|n.|客戶|We are meeting an important client at noon.|我們中午要和一位重要客戶見面。\nproduct|n.|產品|The new product will be launched in May.|新產品將在五月推出。\nrepair|v./n.|修理|The printer needs to be repaired.|這台印表機需要修理。\nreplace|v.|更換；取代|We need to replace the old computers.|我們需要更換舊電腦。\nequipment|n.|設備|Safety equipment must be worn at all times.|必須隨時穿戴安全裝備。\nsupply|n./v.|用品；供應|Office supplies are kept in the cabinet.|辦公用品放在櫃子裡。\nwarehouse|n.|倉庫|The boxes are stored in the warehouse.|這些箱子存放在倉庫裡。\nshipment|n.|貨運；一批貨|The shipment arrived two days late.|這批貨晚了兩天才到。\ndelay|n./v.|延誤|The flight was delayed by two hours.|班機延誤了兩小時。\ncancel|v.|取消|The outdoor event was canceled due to rain.|戶外活動因雨取消。\nconfirm|v.|確認|Please confirm your attendance by email.|請用電子郵件確認是否出席。\nattend|v.|參加；出席|Twenty people attended the workshop.|有二十人參加了這場研習。\nannounce|v.|宣布|The CEO announced a new plan this morning.|執行長今天早上宣布了新計畫。\ninform|v.|通知|We will inform you of any changes.|如有任何變動，我們會通知您。\nnotice|n./v.|公告；注意到|A notice was posted on the bulletin board.|布告欄上貼了一張公告。\nrequest|n./v.|要求；請求|We have received your request.|我們已收到您的請求。\nrequire|v.|需要；要求|This job requires a driver's license.|這份工作需要駕照。\nprovide|v.|提供|Lunch will be provided for all participants.|將為所有參加者提供午餐。\ninclude|v.|包含|The room price includes breakfast.|房價包含早餐。\noffer|v./n.|提供；報價|We offer free delivery on orders over $50.|訂單滿五十美元免運費。\nincrease|v./n.|增加|Sales increased by 15 percent last year.|去年銷售額成長了百分之十五。\ndecrease|v./n.|減少|The number of visitors decreased in winter.|冬天的遊客人數減少了。\nimprove|v.|改善|We want to improve our customer service.|我們想改善客戶服務。\nlocation|n.|地點；分店|Our new location is downtown.|我們的新分店在市中心。\ndirections|n.|方向；指示|Follow the directions on the screen.|請依照螢幕上的指示操作。\npassenger|n.|乘客|Passengers should now board the plane.|乘客現在請登機。\nluggage|n.|行李|Please do not leave your luggage unattended.|請勿將行李置於無人看管處。\nguest|n.|客人；房客|Hotel guests can use the pool for free.|飯店房客可以免費使用泳池。\ncolleague|n.|同事|I had lunch with a colleague today.|我今天和一位同事吃午餐。\nassistant|n.|助理|My assistant will call you back.|我的助理會回電給您。\nform|n.|表格|Please fill out this form.|請填寫這張表格。\ndocument|n.|文件|Please bring the documents to the meeting.|請把文件帶到會議上。\nattach|v.|附上|I've attached the file to this email.|我已把檔案附在這封郵件中。\nreply|v./n.|回覆|Please reply by Thursday.|請在星期四前回覆。\ncontact|v./n.|聯絡；聯絡人|Contact us if you have any questions.|如有任何問題請與我們聯絡。\naddress|n./v.|地址；處理|We will address the problem soon.|我們很快會處理這個問題。\nissue|n./v.|問題；發行|There is an issue with the computer system.|電腦系統出了點問題。\nsolution|n.|解決方法|We need to find a solution quickly.|我們需要盡快找到解決方法。\npolicy|n.|政策；規定|Our return policy allows 30 days.|我們的退貨規定是三十天內。\nrefund|n./v.|退款|You will get a full refund.|您會拿到全額退款。\nexchange|v./n.|更換；交換|Can I exchange this shirt for a larger size?|我可以把這件襯衫換大一號嗎？\nrenovate|v.|翻修|The lobby is being renovated this month.|大廳這個月正在翻修。\nconstruction|n.|施工；建造|Construction of the new bridge will begin soon.|新橋梁很快就要開工。\nadvertise|v.|打廣告|We advertise on social media.|我們在社群媒體上打廣告。\nlaunch|v./n.|推出|The company will launch a new app next month.|公司下個月將推出新的應用程式。\nsurvey|n.|問卷調查|Please take a few minutes to complete the survey.|請花幾分鐘填寫這份問卷。\nresult|n.|結果|The results will be announced next week.|結果將在下週公布。\nrecent|adj.|最近的|Sales have improved in recent months.|最近幾個月銷售有所改善。\nprevious|adj.|先前的|The previous manager retired last year.|前任經理去年退休了。\ncurrent|adj.|目前的|What is your current address?|您目前的地址是什麼？\nannual|adj.|年度的|The annual meeting is held in December.|年度會議在十二月舉行。\nlocal|adj.|當地的|We buy vegetables from local farms.|我們向當地農場購買蔬菜。\nprepare|v.|準備|I need to prepare for the presentation.|我需要準備簡報。\narrange|v.|安排|Can you arrange a meeting with the client?|你可以安排和客戶開會嗎？\norganize|v.|籌辦；整理|She organized the company picnic.|她籌辦了公司野餐。\nreview|v./n.|檢視；評論|Please review the contract carefully.|請仔細檢視這份合約。\napprove|v.|批准|The manager approved the budget.|經理批准了預算。\ndiscuss|v.|討論|We will discuss the plan tomorrow.|我們明天會討論這個計畫。\nsuggest|v.|建議|I suggest taking the train.|我建議搭火車。\nrecommend|v.|推薦|Can you recommend a good restaurant?|你可以推薦一家好餐廳嗎？\nexpect|v.|預期|We expect the package to arrive today.|我們預期包裹今天會到。\ndecide|v.|決定|They decided to open a new store.|他們決定開一家新店。\nhold|v.|舉辦|The event will be held in the main hall.|活動將在主廳舉行。\ntake place|ph.|舉行|The concert will take place on Saturday.|音樂會將在星期六舉行。\nbe located|ph.|位於|The office is located on the fifth floor.|辦公室位於五樓。\nin charge of|ph.|負責|Mr. Chen is in charge of the project.|陳先生負責這個專案。\naccording to|ph.|根據|According to the report, sales went up.|根據報告，銷售額上升了。\ninstead of|ph.|而不是；代替|Let's take the bus instead of a taxi.|我們搭公車，不要搭計程車吧。\ndue to|ph.|由於|The game was canceled due to rain.|比賽因雨取消。\nas soon as possible|ph.|盡快|Please call me back as soon as possible.|請盡快回電給我。\nlook forward to|ph.|期待|I look forward to meeting you.|我期待與您見面。\nfill out|ph.|填寫|Please fill out the application form.|請填寫申請表。\nset up|ph.|設置；安排|Can you set up the projector?|你可以架設投影機嗎？\npick up|ph.|拿取；接人|I will pick up the documents at noon.|我中午會去拿文件。\nsign up for|ph.|報名|You can sign up for the class online.|你可以在網路上報名這堂課。\nrun out of|ph.|用完|We have run out of paper.|我們的紙用完了。\non time|ph.|準時|The train arrived on time.|火車準時抵達。\naccept|v.|接受|We accept all major credit cards.|我們接受各大信用卡。\naccount|n.|帳戶；客戶|You can check your account balance online.|你可以在網路上查詢帳戶餘額。\naccountant|n.|會計師|The accountant is checking the tax forms.|會計師正在檢查稅務表格。\nachieve|v.|達成|The team achieved its sales goal.|團隊達成了銷售目標。\nadmission|n.|入場；入場費|Admission to the museum is free on Sundays.|博物館星期日免費入場。\nadvance|n./adj.|預先；進步|Please book your tickets in advance.|請提前訂票。\nagenda|n.|議程|The first item on the agenda is the budget.|議程的第一項是預算。\nagree|v.|同意|We agreed to meet again next week.|我們同意下週再碰面。\naisle|n.|走道|Paper towels are in aisle five.|紙巾在第五排走道。\namount|n.|數量；金額|Please enter the amount you want to pay.|請輸入您想支付的金額。\napartment|n.|公寓|The apartment has two bedrooms.|這間公寓有兩間臥室。\napplicant|n.|應徵者|We interviewed five applicants today.|我們今天面試了五位應徵者。\napplication|n.|申請；申請書|Your application has been received.|您的申請已收到。\narchitect|n.|建築師|The architect designed the new library.|這位建築師設計了新的圖書館。\narea|n.|區域；領域|Smoking is not allowed in this area.|這個區域禁止吸菸。\narrival|n.|抵達|The arrival time is 3:15 p.m.|抵達時間是下午三點十五分。\narticle|n.|文章；物品|I read an article about the merger.|我讀了一篇關於合併的文章。\nassign|v.|分配；指派|I was assigned to the London office.|我被指派到倫敦辦公室。\nassistance|n.|協助|Thank you for your assistance.|謝謝您的協助。\nattention|n.|注意|May I have your attention, please?|請大家注意一下。\naudience|n.|觀眾；聽眾|The audience enjoyed the performance.|觀眾很喜歡這場表演。\nauthor|n.|作者|The author will sign books at the event.|作者將在活動上簽書。\navoid|v.|避免|Leave early to avoid heavy traffic.|早點出門以避開塞車。\naward|n./v.|獎項；頒發|She won an award for her design.|她的設計得了獎。\nbalance|n.|餘額；平衡|Please pay the remaining balance by May 1.|請在五月一日前付清剩餘款項。\nbank|n.|銀行|I need to go to the bank to deposit a check.|我需要去銀行存一張支票。\nbenefit|n./v.|福利；好處|Health insurance is one of the benefits.|健康保險是福利之一。\nbill|n./v.|帳單；開帳單|Did you pay the electricity bill?|你繳電費帳單了嗎？\nboard|n./v.|董事會；登上|The board will meet on Tuesday.|董事會將在星期二開會。\nbook|v.|預訂|I booked a room at the hotel.|我在飯店訂了一間房。\nbranch|n.|分公司；分行|The bank has a branch near the station.|這家銀行在車站附近有分行。\nbrochure|n.|小冊子|Please take a brochure at the front desk.|請在櫃台拿一份簡介手冊。\nbusiness trip|n.|出差|He is on a business trip to Seoul.|他正在首爾出差。\ncabinet|n.|櫃子|The files are in the bottom cabinet.|檔案在最下面的櫃子裡。\ncandidate|n.|候選人；應徵者|She is the best candidate for the job.|她是這份工作最好的人選。\ncapacity|n.|容量；能力|The room has a capacity of 50 people.|這個房間可容納五十人。\ncareer|n.|職業生涯|He started his career as a salesman.|他從業務員開始他的職業生涯。\ncash|n.|現金|Do you want to pay in cash or by card?|您要付現還是刷卡？\ncelebrate|v.|慶祝|We celebrated the company's tenth anniversary.|我們慶祝了公司十週年。\ncharge|n./v.|費用；收費|There is no charge for delivery.|運送不收費。\ncheck in|ph.|報到；入住|Please check in at least two hours before your flight.|請在班機起飛前至少兩小時報到。\ncheck out|ph.|退房；結帳|Check-out time is 11 a.m.|退房時間是上午十一點。\nchoose|v.|選擇|You can choose from three meal options.|你可以從三種餐點中選擇。\nclerk|n.|店員；職員|The clerk helped me find the right size.|店員幫我找到合適的尺寸。\ncomfortable|adj.|舒適的|The new chairs are very comfortable.|新椅子非常舒服。\ncomment|n./v.|評論；意見|Please send your comments by email.|請用電子郵件寄送您的意見。\ncommute|v./n.|通勤|I commute to work by train.|我搭火車通勤上班。\ncompetition|n.|競爭；比賽|The competition in this market is strong.|這個市場的競爭很激烈。\ncomplaint|n.|抱怨；投訴|We received a complaint about the noise.|我們接到了關於噪音的投訴。\nconcern|n.|擔心；關心的事|Safety is our main concern.|安全是我們最關心的事。\ncondition|n.|狀況；條件|The car is in good condition.|這輛車的車況良好。\nconnect|v.|連接；轉接|I'll connect you to the sales department.|我幫您轉接到業務部。\nconsider|v.|考慮|We are considering moving to a bigger office.|我們正在考慮搬到更大的辦公室。\ncontain|v.|包含|This box contains glass items.|這個箱子裡裝有玻璃製品。\ncontinue|v.|繼續|We will continue the meeting after lunch.|我們午餐後繼續開會。\nconvenient|adj.|方便的|Is Tuesday convenient for you?|星期二您方便嗎？\ncopy|n./v.|副本；影印|Please make ten copies of this page.|請把這頁影印十份。\ncorner|n.|轉角|The bank is on the corner of Main Street.|銀行在主街的轉角。\ncounter|n.|櫃台|Please pay at the counter.|請在櫃台付款。\ncoupon|n.|優惠券|Use this coupon to get 20 percent off.|使用這張優惠券可打八折。\ncover|v.|涵蓋；支付|The insurance covers the repair costs.|保險會支付修理費用。\ncreate|v.|創造；建立|We created a new website for the store.|我們為商店建立了新網站。\ncrowded|adj.|擁擠的|The train was very crowded this morning.|今天早上的火車非常擁擠。\ncustomer service|n.|客戶服務|Please call customer service for help.|請打給客服尋求協助。\ndamage|n./v.|損壞|The package was damaged during shipping.|包裹在運送途中損壞了。\ndate|n.|日期|What is the date of the event?|活動是哪一天？\ndeal|n.|交易；優惠|We got a good deal on the new printer.|我們用很划算的價格買到新印表機。\ndelivery|n.|送貨|Delivery usually takes three days.|送貨通常需要三天。\ndemand|n./v.|需求；要求|There is a high demand for this product.|這項產品的需求很高。\ndepart|v.|出發；離開|The bus departs at 8:30.|公車八點半出發。\ndeparture|n.|出發；離開|Check the departure board for gate changes.|請查看出發看板確認登機門變更。\ndeposit|n./v.|存款；訂金|A deposit of $100 is required.|需要支付一百美元的訂金。\ndescribe|v.|描述|Please describe the problem in detail.|請詳細描述問題。\ndesign|n./v.|設計|They changed the design of the logo.|他們修改了標誌的設計。\ndetail|n.|細節|Please send me the details of the trip.|請把這趟旅程的細節寄給我。\ndevelop|v.|開發；發展|The company is developing a new phone.|公司正在開發一款新手機。\ndevice|n.|裝置|Please turn off all electronic devices.|請關閉所有電子裝置。\ndirector|n.|主管；董事|The director will give a speech.|主任將發表演講。\ndiscussion|n.|討論|We had a long discussion about the budget.|我們針對預算進行了很長的討論。\ndisplay|n./v.|展示；陳列|New products are on display near the entrance.|新產品陳列在入口附近。\ndistribute|v.|分發；配送|Please distribute these handouts to everyone.|請把這些講義發給大家。\ndowntown|adv./n.|市中心|Our office moved downtown last year.|我們辦公室去年搬到市中心。\ndraft|n./v.|草稿；起草|I sent you the first draft of the report.|我把報告的初稿寄給你了。\nearn|v.|賺取|She earns a good salary.|她的薪水不錯。\neconomy|n.|經濟|The local economy is growing.|當地經濟正在成長。\neffective|adj.|有效的；生效的|The new rule is effective from June 1.|新規定自六月一日起生效。\nelectronic|adj.|電子的|We sell electronic goods.|我們販售電子產品。\nemployer|n.|雇主|My employer pays for my training.|我的雇主負擔我的訓練費用。\nenter|v.|進入；輸入|Please enter your password.|請輸入您的密碼。\nentrance|n.|入口|Meet me at the main entrance.|在大門口和我碰面。\nestimate|n./v.|估價；估計|Can you give me an estimate for the repairs?|你可以給我修理的估價嗎？\nevent|n.|活動|The event was a big success.|這場活動非常成功。\nexhibit|n./v.|展覽；展出|The art exhibit opens on Friday.|藝術展覽星期五開幕。\nexpand|v.|擴展|The company plans to expand into Asia.|公司計畫擴展到亞洲市場。\nexpense|n.|費用；支出|Keep all receipts for travel expenses.|請保留所有差旅費用的收據。\nexpensive|adj.|昂貴的|This hotel is too expensive for us.|這家飯店對我們來說太貴了。\nexplain|v.|解釋|Can you explain how this machine works?|你可以解釋這台機器怎麼運作嗎？\nfacility|n.|設施|The facility includes a gym and a pool.|設施包括健身房和游泳池。\nfactory|n.|工廠|The factory produces car parts.|這間工廠生產汽車零件。\nfare|n.|車資|The bus fare is two dollars.|公車車資是兩美元。\nfee|n.|費用|There is a small fee for late payment.|逾期付款需支付一小筆費用。\nfeedback|n.|回饋意見|Thank you for your feedback.|謝謝您的回饋。\nfigure|n.|數字；人物|The sales figures look good this month.|這個月的銷售數字看起來不錯。\nfile|n./v.|檔案；歸檔|Please file these papers by date.|請把這些文件依日期歸檔。\nfinance|n./v.|財務；資助|She works in the finance department.|她在財務部工作。\nflexible|adj.|有彈性的|We offer flexible working hours.|我們提供彈性工時。\nfloor|n.|樓層；地板|The cafeteria is on the second floor.|員工餐廳在二樓。\nfocus|v./n.|專注；重點|Let's focus on the main problem.|我們專注在主要問題上吧。\nfollow|v.|跟隨；遵守|Please follow the safety rules.|請遵守安全規定。\nfree of charge|ph.|免費|Parking is free of charge for guests.|房客停車免費。\nfrequent|adj.|頻繁的|He is a frequent customer here.|他是這裡的常客。\nfurniture|n.|家具|We need new furniture for the lobby.|大廳需要新家具。\ngather|v.|聚集；收集|Please gather in the conference room at 3.|請三點在會議室集合。\ngoal|n.|目標|Our goal is to double sales.|我們的目標是讓銷售額翻倍。\ngoods|n.|商品；貨物|The goods will be shipped tomorrow.|貨物明天出貨。\nguide|n./v.|導覽員；指引|The guide will show you around the factory.|導覽員會帶您參觀工廠。\nhandle|v.|處理|She handles all customer complaints.|她處理所有客戶投訴。\nheadquarters|n.|總部|Our headquarters is in Taipei.|我們的總部在台北。\nhelpful|adj.|有幫助的|The staff were very helpful.|員工們非常樂於幫忙。\nhost|v./n.|主辦；主持人|Our company will host the conference.|我們公司將主辦這場研討會。\nidentification|n.|身分證明|Please show your identification at the front desk.|請在櫃台出示身分證明。\nimmediately|adv.|立刻|Please call me immediately.|請立刻打電話給我。\nincome|n.|收入|Their income increased last year.|他們去年的收入增加了。\nindustry|n.|產業|He has worked in the travel industry for ten years.|他在旅遊業工作了十年。\ninformation|n.|資訊|For more information, visit our website.|欲知更多資訊，請上我們的網站。\ninstall|v.|安裝|The technician installed the new software.|技術人員安裝了新軟體。\ninstruction|n.|說明；指示|Read the instructions before you start.|開始前請先閱讀說明。\ninsurance|n.|保險|Does the price include insurance?|價格有包含保險嗎？\nintroduce|v.|介紹；推出|Let me introduce our new manager.|讓我介紹我們的新經理。\ninventory|n.|庫存|We check our inventory every Friday.|我們每週五清點庫存。\nitem|n.|物品；項目|This item is out of stock.|這個商品缺貨中。\njoin|v.|加入|Would you like to join us for dinner?|你要和我們一起吃晚餐嗎？\njourney|n.|旅程|The journey takes about three hours.|這趟旅程大約需要三小時。\nknowledge|n.|知識|She has a good knowledge of marketing.|她對行銷很有研究。\nlabel|n./v.|標籤；貼標籤|Please label each box clearly.|請清楚地在每個箱子貼上標籤。\nlaboratory|n.|實驗室|The samples were sent to the laboratory.|樣本已送到實驗室。\nlawyer|n.|律師|Our lawyer will review the contract.|我們的律師會審閱合約。\nlead|v.|帶領|Ms. Wang will lead the training session.|王小姐將主持這場訓練課程。\nlease|n./v.|租約；租用|We signed a two-year lease on the office.|我們簽了兩年的辦公室租約。\nleave|v./n.|離開；休假|She is on maternity leave until June.|她休產假到六月。\nlibrary|n.|圖書館|The library is open until 9 p.m.|圖書館開到晚上九點。\nlimit|n./v.|限制|There is a limit of two items per customer.|每位顧客限購兩件。\nlist|n./v.|清單；列出|Please make a list of the supplies we need.|請列出我們需要的用品清單。\nload|v./n.|裝載；負荷|The workers are loading the truck.|工人正在把貨裝上卡車。\nlobby|n.|大廳|Let's meet in the hotel lobby.|我們在飯店大廳碰面吧。\nloss|n.|損失|The company reported a loss this year.|公司今年公布虧損。\nlower|v./adj.|降低；較低的|We lowered our prices to attract customers.|我們降價以吸引顧客。\nmachine|n.|機器|The coffee machine is broken again.|咖啡機又壞了。\nmain|adj.|主要的|The main office is in Kaohsiung.|總辦公室在高雄。\nmaintain|v.|維持；保養|It is important to maintain the equipment.|保養設備很重要。\nmaintenance|n.|維修保養|The elevator is under maintenance today.|電梯今天在維修保養。\nmanage|v.|管理；設法做到|He manages a team of twelve people.|他管理一個十二人的團隊。\nmanufacture|v.|製造|The company manufactures shoes.|這家公司製造鞋子。\nmaterial|n.|材料；資料|The training materials are on the table.|訓練資料在桌上。\nmeasure|v./n.|測量；措施|We need to measure the room first.|我們需要先量房間的尺寸。\nmember|n.|會員；成員|Members get free parking.|會員可以免費停車。\nmembership|n.|會員資格|Your membership expires next month.|您的會員資格下個月到期。\nmention|v.|提到|He mentioned that he would be late.|他提到他會晚到。\nmessage|n.|訊息；留言|Can I leave a message for Mr. Ito?|我可以留言給伊藤先生嗎？\nmethod|n.|方法|This method saves a lot of time.|這個方法可以省下很多時間。\nmistake|n.|錯誤|There is a mistake on the invoice.|請款單上有一個錯誤。\nmodern|adj.|現代的|The office has a modern design.|辦公室的設計很現代化。\nmove|v.|搬遷；移動|We are moving to a new building.|我們要搬到新大樓。\nnecessary|adj.|必要的|Is it necessary to book in advance?|需要事先預訂嗎？\nneighborhood|n.|社區；附近|There are many cafés in this neighborhood.|這附近有很多咖啡廳。\nnewsletter|n.|電子報；通訊|Sign up for our monthly newsletter.|訂閱我們的每月電子報。\nnote|n./v.|筆記；注意|Please note that the office is closed on Monday.|請注意辦公室星期一不營業。\nnotify|v.|通知|We will notify you when your order ships.|您的訂單出貨時我們會通知您。\nnearby|adj./adv.|附近的|Is there a pharmacy nearby?|附近有藥局嗎？\noccur|v.|發生|The accident occurred at 9 a.m.|事故發生在上午九點。\noperate|v.|操作；營運|Only trained staff can operate this machine.|只有受過訓練的員工可以操作這台機器。\nopportunity|n.|機會|This is a great opportunity for you.|這對你來說是個很好的機會。\noption|n.|選擇|We have several payment options.|我們有幾種付款方式可以選擇。\noriginal|adj.|原本的；原創的|Please bring the original receipt.|請攜帶收據正本。\nout of order|ph.|故障|The vending machine is out of order.|自動販賣機故障了。\nout of stock|ph.|缺貨|That model is currently out of stock.|那個型號目前缺貨。\novertime|n./adv.|加班|I worked overtime last night.|我昨晚加班了。\nowner|n.|擁有者；老闆|The owner of the restaurant is very friendly.|餐廳老闆非常友善。\npackage|n.|包裹；套裝方案|A package arrived for you this morning.|今天早上有你的包裹。\nparticipant|n.|參加者|Each participant will receive a certificate.|每位參加者都會獲得證書。\nparticipate|v.|參加|Everyone is encouraged to participate.|鼓勵大家踴躍參加。\npayment|n.|付款|Payment is due within 30 days.|款項應於三十天內支付。\nperformance|n.|表現；演出|Her performance this year was excellent.|她今年的表現非常傑出。\npermit|n./v.|許可證；允許|You need a permit to park here.|在這裡停車需要許可證。\npharmacy|n.|藥局|The pharmacy closes at 10 p.m.|藥局晚上十點打烊。\nplant|n./v.|工廠；植物；種植|The company built a new plant in Vietnam.|公司在越南蓋了一座新工廠。\nplatform|n.|月台；平台|The train leaves from platform 3.|火車從第三月台出發。\npopular|adj.|受歡迎的|This dish is very popular with tourists.|這道菜很受觀光客歡迎。\npostpone|v.|延期|The meeting was postponed until Friday.|會議延到星期五。\npresentation|n.|簡報|She gave a presentation on the new product.|她針對新產品做了簡報。\npresident|n.|總裁；會長|The company president will visit our office.|公司總裁將來訪我們的辦公室。\nprevent|v.|預防|Wear gloves to prevent injuries.|戴手套以預防受傷。\nprint|v.|列印|Could you print this document for me?|你可以幫我列印這份文件嗎？\nprocess|n./v.|流程；處理|Your order is being processed.|您的訂單正在處理中。\nproduce|v.|生產|The farm produces fresh milk.|這座農場生產鮮奶。\nprofit|n.|利潤|The company's profits rose by 10 percent.|公司利潤成長了百分之十。\nprogress|n.|進展|We are making good progress on the project.|專案進展順利。\npromote|v.|升遷；推廣|He was promoted to sales manager.|他被升為業務經理。\npromotion|n.|升遷；促銷|The store is having a holiday promotion.|商店正在舉辦節日促銷。\nproperty|n.|房地產；財產|The property is for sale.|這處房產正在出售。\nproposal|n.|提案|The board accepted our proposal.|董事會接受了我們的提案。\nprotect|v.|保護|This case protects your laptop.|這個保護殼可以保護你的筆電。\npublic|adj./n.|公共的；大眾|The park is open to the public.|這座公園對大眾開放。\npublish|v.|出版；發布|The results will be published online.|結果將在網路上公布。\nquality|n.|品質|We only sell high-quality products.|我們只販售高品質的產品。\nquarter|n.|季度；四分之一|Profits rose in the third quarter.|第三季利潤上升。\nquote|n./v.|報價；引用|Can you send me a price quote?|你可以寄報價單給我嗎？\nrate|n.|費率；比率|The hotel offers a special rate for groups.|飯店提供團體優惠價。\nreach|v.|抵達；聯絡上|You can reach me at this number.|您可以打這個號碼聯絡我。\nreasonable|adj.|合理的|The prices here are very reasonable.|這裡的價格很合理。\nreceive|v.|收到|Did you receive my email?|你有收到我的郵件嗎？\nreception|n.|接待處；歡迎會|Please ask at reception.|請到接待處詢問。\nreceptionist|n.|接待員|The receptionist will give you a visitor pass.|接待員會給您訪客證。\nrecord|n./v.|紀錄；記錄|Please keep a record of all expenses.|請記錄所有開支。\nreduce|v.|減少|We need to reduce our costs.|我們需要降低成本。\nregister|v.|註冊；登記|Please register before the workshop.|請在研習前完成報名。\nregistration|n.|報名；登記|Registration closes on Friday.|報名將於週五截止。\nregular|adj.|定期的；一般的|We hold regular meetings every Monday.|我們每週一定期開會。\nremind|v.|提醒|Please remind me to call the client.|請提醒我打電話給客戶。\nremove|v.|移除|Please remove your shoes before entering.|進入前請脫鞋。\nrent|v./n.|租；租金|The rent is due on the first of the month.|房租在每月一日到期。\nrepairperson|n.|維修人員|The repairperson will come this afternoon.|維修人員今天下午會來。\nrepresent|v.|代表|She represents our company at trade shows.|她代表我們公司參加商展。\nreserve|v.|預訂；保留|I reserved a table for six.|我預訂了六人的桌位。\nresident|n.|居民|Residents can park here for free.|居民可以免費在這裡停車。\nrespond|v.|回應|Please respond to the email by tomorrow.|請在明天前回覆郵件。\nresponsible|adj.|負責的|Who is responsible for this project?|誰負責這個專案？\nrestaurant|n.|餐廳|The restaurant is fully booked tonight.|餐廳今晚訂位已滿。\nretire|v.|退休|He will retire at the end of the year.|他將在年底退休。\nroute|n.|路線|This bus route goes to the airport.|這條公車路線開往機場。\nsafety|n.|安全|Safety is our top priority.|安全是我們的首要考量。\nsample|n.|樣品|Can we get a free sample?|我們可以拿免費樣品嗎？\nsave|v.|節省；儲存|You can save money by booking early.|提早預訂可以省錢。\nseat|n./v.|座位；就座|Please take a seat.|請坐。\nsection|n.|部分；區域|The children's section is on the first floor.|兒童區在一樓。\nsecurity|n.|保全；安全|Please show your badge to security.|請向保全出示識別證。\nseminar|n.|研討會|I attended a seminar on leadership.|我參加了一場領導力研討會。\nserve|v.|供應；服務|Dinner will be served at seven.|晚餐七點開始供應。\nsession|n.|一段時間；場次|The morning session starts at nine.|上午場九點開始。\nshare|v./n.|分享；股份|Let me share my screen with you.|讓我和你分享我的螢幕。\nshelf|n.|架子|Please put the books back on the shelf.|請把書放回架上。\nshift|n.|輪班|I work the night shift this week.|我這週上夜班。\nship|v.|運送|We ship orders all over the world.|我們將訂單寄送到世界各地。\nshortly|adv.|很快地|The doctor will see you shortly.|醫生很快就會看診。\nsign|v./n.|簽名；標誌|Please sign at the bottom of the page.|請在頁面底部簽名。\nstaff|n.|員工|The staff meeting is at 9 a.m.|員工會議在上午九點。\nstock|n.|庫存；股票|We have plenty of paper in stock.|我們的紙存貨充足。\nstorage|n.|儲藏|The storage room is in the basement.|儲藏室在地下室。\nstore|n./v.|商店；儲存|Store the files in a safe place.|把檔案存放在安全的地方。\nsuccessful|adj.|成功的|The product launch was very successful.|產品發表非常成功。\nsupervisor|n.|主管|Please ask your supervisor for approval.|請向你的主管申請核准。\nsupplier|n.|供應商|We changed our paper supplier.|我們換了紙張供應商。\nsupport|n./v.|支援；支持|Our technical support team is available 24 hours.|我們的技術支援團隊二十四小時服務。\nswitch|v.|切換；轉換|We switched to a new phone system.|我們換了新的電話系統。\ntechnician|n.|技術人員|A technician will fix your computer.|技術人員會修理你的電腦。\ntemporary|adj.|暫時的|This is only a temporary office.|這只是臨時辦公室。\ntenant|n.|房客；租戶|The tenants complained about the heating.|房客抱怨暖氣有問題。\ntour|n./v.|參觀；導覽|We took a tour of the factory.|我們參觀了工廠。\ntourist|n.|觀光客|The city is popular with tourists.|這座城市很受觀光客歡迎。\ntraffic|n.|交通|There was heavy traffic on the highway.|高速公路上塞車很嚴重。\ntransfer|v./n.|轉調；轉帳；轉乘|He was transferred to the Tokyo branch.|他被調到東京分公司。\ntransportation|n.|交通運輸|Public transportation is cheap here.|這裡的大眾運輸很便宜。\ntravel|v./n.|旅行；出差|I travel to Japan for work twice a year.|我一年兩次到日本出差。\ntrip|n.|旅程|How was your trip to Singapore?|你的新加坡之旅怎麼樣？\ntype|n./v.|種類；打字|What type of room would you like?|您想要哪一種房型？\nupdate|v./n.|更新|Please update your contact information.|請更新您的聯絡資料。\nupgrade|v./n.|升級|We upgraded our computer system.|我們升級了電腦系統。\nurgent|adj.|緊急的|I have an urgent message for you.|我有緊急訊息要給你。\nvacation|n.|假期|She is on vacation until next Monday.|她休假到下週一。\nvehicle|n.|車輛|Please do not leave your vehicle here.|請勿將車輛停放在此。\nvisitor|n.|訪客|All visitors must sign in at the front desk.|所有訪客都必須在櫃台登記。\nvolunteer|n./v.|志工；自願|We need volunteers for the event.|活動需要志工。\nwage|n.|工資|The minimum wage will increase next year.|基本工資明年將調漲。\nwebsite|n.|網站|Visit our website for more details.|欲知詳情請上我們的網站。\nweekly|adj.|每週的|We have a weekly team meeting.|我們每週開一次團隊會議。\nworkshop|n.|研習會；工作坊|The workshop is for new managers.|這場研習是為新任經理舉辦的。\nworth|adj.|值得的|The museum is worth a visit.|這間博物館值得一遊。\nyearly|adj.|每年的|The yearly fee is $120.|年費是一百二十美元。\naccounting|n.|會計|He works in the accounting department.|他在會計部工作。\nadvertisement|n.|廣告|I saw your advertisement in the newspaper.|我在報紙上看到你們的廣告。\nairline|n.|航空公司|Which airline are you flying with?|你搭哪一家航空公司？\nallow|v.|允許|Pets are not allowed in the building.|大樓內不准帶寵物。\nalready|adv.|已經|The meeting has already started.|會議已經開始了。\nalthough|conj.|雖然|Although it rained, the event was a success.|雖然下雨，活動還是很成功。\nappear|v.|出現；似乎|The error message appears every morning.|這個錯誤訊息每天早上都會出現。\napproximately|adv.|大約|The trip takes approximately two hours.|旅程大約需要兩小時。\nassemble|v.|組裝；集合|The desks are easy to assemble.|這些桌子很容易組裝。\nattract|v.|吸引|The sale attracted many shoppers.|特賣吸引了許多購物者。\nbasement|n.|地下室|The parking garage is in the basement.|停車場在地下室。\nbeverage|n.|飲料|Beverages are not allowed in the library.|圖書館內禁止飲料。\nborrow|v.|借入|May I borrow your pen?|我可以借你的筆嗎？\nbrand|n.|品牌|This brand is popular in Asia.|這個品牌在亞洲很受歡迎。\nbreak|n.|休息|Let's take a ten-minute break.|我們休息十分鐘吧。\nbroken|adj.|壞掉的|The copy machine is broken.|影印機壞了。\ncalendar|n.|日曆；行事曆|I'll check my calendar and let you know.|我查一下行事曆再告訴你。\ncatalog|n.|型錄|Please send me your latest catalog.|請寄給我你們最新的型錄。\nceremony|n.|典禮|The award ceremony starts at 7 p.m.|頒獎典禮晚上七點開始。\ncertificate|n.|證書|You will receive a certificate after the course.|課程結束後你會拿到證書。\nchange|n./v.|變更；零錢|Here is your change.|這是找您的零錢。\nclean|v./adj.|清潔；乾淨的|The cleaning crew comes every evening.|清潔人員每天傍晚來打掃。\nclosed|adj.|關閉的|The store is closed on national holidays.|商店在國定假日不營業。\ncoworker|n.|同事|My coworkers threw me a birthday party.|同事們幫我辦了生日派對。\ncrew|n.|工作人員|The film crew arrived early.|拍攝團隊提早抵達。\ncuisine|n.|菜餚|The restaurant serves Italian cuisine.|這家餐廳供應義大利料理。\ndaily|adj.|每日的|The daily special is chicken soup.|今日特餐是雞湯。\ndecline|v./n.|婉拒；下降|Sales declined in the second quarter.|第二季銷售下滑。\ndegree|n.|學位；程度|She has a degree in engineering.|她有工程學位。\ndessert|n.|甜點|Would you like some dessert?|您要來點甜點嗎？\ndinner|n.|晚餐|The company dinner is on Friday night.|公司聚餐在星期五晚上。\ndirect|v./adj.|指引；直接的|Is there a direct flight to Bangkok?|有直飛曼谷的班機嗎？\ndiscount code|n.|折扣碼|Enter the discount code at checkout.|結帳時輸入折扣碼。\nduty|n.|職責；稅|Your main duty is to answer the phone.|你的主要職責是接電話。\neditor|n.|編輯|The editor checked the article for mistakes.|編輯檢查了文章裡的錯誤。\nelevator|n.|電梯|Please take the elevator to the 8th floor.|請搭電梯到八樓。\nemail|n./v.|電子郵件；寄信|I'll email you the schedule.|我會用電子郵件把時程寄給你。\nencourage|v.|鼓勵|We encourage employees to take vacations.|我們鼓勵員工休假。\nengineer|n.|工程師|The engineer fixed the problem quickly.|工程師很快就解決了問題。\nenvelope|n.|信封|Put the check in the envelope.|把支票放進信封裡。\nespecially|adv.|特別是|The store is busy, especially on weekends.|這家店很忙，特別是週末。\nexact|adj.|確切的|What is the exact address?|確切地址是什麼？\nexcellent|adj.|優秀的|The food was excellent.|食物非常美味。\nfix|v.|修理|Can you fix the air conditioner?|你可以修冷氣嗎？\nflight attendant|n.|空服員|The flight attendant served drinks.|空服員提供飲料。\nforecast|n./v.|預測；預報|The weather forecast says it will rain.|氣象預報說會下雨。\nfront desk|n.|櫃台|Please leave your key at the front desk.|請把鑰匙留在櫃台。\nfund|n./v.|資金；資助|The project is funded by the city.|這個專案由市政府出資。\ngrocery|n.|雜貨|I need to buy some groceries.|我需要買些日用雜貨。\nguarantee|n./v.|保證|We guarantee delivery within 48 hours.|我們保證四十八小時內送達。\nhallway|n.|走廊|The restroom is at the end of the hallway.|廁所在走廊盡頭。\nhardware|n.|硬體；五金|The hardware store sells tools.|五金行有賣工具。\nhealth|n.|健康|Exercise is good for your health.|運動對健康有益。\nheavy|adj.|重的；大量的|This box is too heavy to lift.|這個箱子太重了抬不起來。\nhighway|n.|高速公路|The highway was closed for repairs.|高速公路因維修而封閉。\nhospital|n.|醫院|The new hospital will open next year.|新醫院明年開幕。\ninvite|v.|邀請|We invited all clients to the party.|我們邀請所有客戶來參加派對。\ninvitation|n.|邀請函|Thank you for the invitation.|謝謝您的邀請。\nkitchen|n.|廚房|The kitchen is closed after 10 p.m.|廚房晚上十點後不供餐。\nlunch break|n.|午休|I'll call you during my lunch break.|我午休時打給你。\nmail|n./v.|郵件；寄|The mail usually arrives at noon.|郵件通常中午送到。\nmedical|adj.|醫療的|Please bring your medical records.|請攜帶你的病歷。\nmeal|n.|一餐|Meals are included in the tour price.|行程費用包含餐點。\nmicrophone|n.|麥克風|Please speak into the microphone.|請對著麥克風說話。\nmissing|adj.|遺失的|One of the boxes is missing.|有一個箱子不見了。\nmuseum|n.|博物館|The museum is closed on Mondays.|博物館星期一休館。\nnegotiation|n.|協商|The negotiations lasted three days.|協商持續了三天。\nnurse|n.|護理師|The nurse will take your temperature.|護理師會幫你量體溫。\noffice supplies|n.|辦公用品|We order office supplies every month.|我們每個月訂購辦公用品。\nonline|adj./adv.|線上的|You can pay your bill online.|你可以在線上繳費。\nopen house|n.|開放參觀日|The school is having an open house on Saturday.|學校星期六舉辦開放參觀日。\nparking lot|n.|停車場|The parking lot is full.|停車場滿了。\npatient|n./adj.|病人；有耐心的|The doctor sees thirty patients a day.|醫生一天看三十位病人。\npersonal|adj.|個人的|Please don't make personal calls at work.|上班時請勿打私人電話。\nphotocopier|n.|影印機|The photocopier is out of paper.|影印機沒紙了。\nplumber|n.|水電工|We called a plumber to fix the sink.|我們找了水電工來修水槽。\nprefer|v.|偏好|I prefer the window seat.|我比較喜歡靠窗的座位。\nprice list|n.|價目表|Please refer to the attached price list.|請參考附件的價目表。\nprinter|n.|印表機|The printer is out of ink.|印表機沒墨水了。\nquick|adj.|快速的|Can I ask a quick question?|我可以問一個簡單的問題嗎？\nraise|n./v.|加薪；提高|She asked her boss for a raise.|她向老闆要求加薪。\nreal estate|n.|房地產|He works for a real estate agency.|他在房仲公司工作。\nrecipe|n.|食譜|The chef shared his recipe.|主廚分享了他的食譜。\nrefrigerator|n.|冰箱|Put the milk in the refrigerator.|把牛奶放進冰箱。\nreminder|n.|提醒（通知）|This is a reminder about your appointment.|這是您的預約提醒。\nrepair shop|n.|維修店|I took my car to the repair shop.|我把車送去維修店。\nrestroom|n.|洗手間|Where is the restroom?|洗手間在哪裡？\nsales|n.|銷售；業績|Sales were higher than expected.|業績比預期好。\nsale|n.|特賣；銷售|Everything is on sale this weekend.|這週末全面特價。\nscenery|n.|風景|The scenery along the coast is beautiful.|沿海的風景很美。\nscreen|n.|螢幕|Look at the screen, please.|請看螢幕。\nsecretary|n.|秘書|Leave a message with my secretary.|請留言給我的秘書。", "adv": "accommodate|v.|容納；通融|The hall can accommodate up to 300 guests.|這個大廳最多可容納三百位賓客。\nacquire|v.|收購；取得|The firm acquired a small software company.|這家公司收購了一間小型軟體公司。\nadjacent|adj.|鄰近的|The parking lot is adjacent to the building.|停車場緊鄰這棟大樓。\nallocate|v.|分配|Funds were allocated to the marketing team.|資金已分配給行銷團隊。\nanticipate|v.|預期|We anticipate strong demand this summer.|我們預期今年夏天需求強勁。\nassess|v.|評估|The team will assess the damage.|團隊將評估損害情況。\nauthorize|v.|授權|Only managers can authorize refunds.|只有經理能核准退款。\ncommence|v.|開始|Construction will commence in April.|工程將於四月開始。\ncompensation|n.|補償；薪酬|The package includes generous compensation.|這個方案包含優渥的薪酬。\ncomplimentary|adj.|免費贈送的|Guests receive a complimentary breakfast.|房客享有免費早餐。\ncomply with|v.|遵守|All vendors must comply with safety rules.|所有廠商都必須遵守安全規定。\ncomprehensive|adj.|全面的|We offer a comprehensive training program.|我們提供完整全面的訓練課程。\nconcise|adj.|簡潔的|Please keep your summary concise.|請讓你的摘要保持簡潔。\nconsecutive|adj.|連續的|Sales rose for three consecutive quarters.|銷售額連續三季成長。\nconsolidate|v.|合併；整合|The two offices will be consolidated.|兩間辦公室將會合併。\nconsult|v.|諮詢；查閱|Consult the manual before using the device.|使用裝置前請先查閱手冊。\ncontingent on|adj.|視…而定|The offer is contingent on a background check.|這份錄取通知需視背景調查結果而定。\ncoordinate|v.|協調|She coordinates events for the company.|她負責協調公司的活動。\ndefective|adj.|有瑕疵的|Defective items may be returned for free.|瑕疵品可免費退回。\ndesignate|v.|指定|Smoking is allowed only in designated areas.|只有在指定區域才能吸菸。\ndiscontinue|v.|停產；中止|This model has been discontinued.|這個型號已經停產了。\ndisrupt|v.|干擾|The strike disrupted train services.|罷工擾亂了火車服務。\neligible|adj.|有資格的|Full-time staff are eligible for the bonus.|全職員工有資格領取獎金。\nenclose|v.|隨函附上|Please find the receipt enclosed.|隨函附上收據，請查收。\nendorse|v.|背書；支持|The plan was endorsed by the board.|這項計畫獲得董事會支持。\nenhance|v.|提升|The update will enhance security.|這次更新將提升安全性。\nensure|v.|確保|Please ensure that all doors are locked.|請確保所有門都已上鎖。\nexpedite|v.|加快處理|We can expedite your order for a small fee.|支付少許費用即可加快處理您的訂單。\nexpertise|n.|專業知識|We need someone with technical expertise.|我們需要有技術專長的人。\nextension|n.|延期；分機|Call me at extension 204.|請撥分機 204 找我。\nfacilitate|v.|促進；使便利|The new software facilitates communication.|新軟體讓溝通更方便。\nfeasible|adj.|可行的|The plan is not financially feasible.|這個計畫在財務上不可行。\nfluctuate|v.|波動|Fuel prices fluctuate every month.|燃料價格每個月都在波動。\nforward|v.|轉寄|I'll forward the email to you.|我會把郵件轉寄給你。\nfulfill|v.|履行；完成（訂單）|We fulfill most orders within 24 hours.|我們大部分訂單在二十四小時內出貨。\nimplement|v.|實施|The new policy will be implemented next month.|新政策將於下個月實施。\nincentive|n.|激勵；獎勵|Staff receive incentives for meeting targets.|員工達成目標可獲得獎勵。\nincur|v.|招致（費用）|Late payments will incur a fee.|逾期付款將產生手續費。\ninquiry|n.|詢問|Thank you for your inquiry about our services.|感謝您詢問我們的服務。\ninspect|v.|檢查|Inspectors will inspect the factory on Monday.|檢查員星期一將檢查工廠。\ninstallment|n.|分期付款|You can pay in three monthly installments.|你可以分三個月分期付款。\nitinerary|n.|行程表|Your travel itinerary is attached.|附件是您的旅遊行程表。\nlucrative|adj.|獲利豐厚的|It was a lucrative contract.|那是一份獲利豐厚的合約。\nmandatory|adj.|強制的|Attendance at the meeting is mandatory.|這場會議必須出席。\nmerger|n.|合併|The merger was completed last week.|合併案上週完成。\nnegotiate|v.|協商|We negotiated a lower price.|我們談到了更低的價格。\nobtain|v.|取得|You must obtain a permit first.|你必須先取得許可證。\noccupancy|n.|入住率；使用|Hotel occupancy reached 90 percent.|飯店住房率達到百分之九十。\noutstanding|adj.|傑出的；未付清的|Please pay the outstanding balance.|請付清未付的餘額。\noverdue|adj.|逾期的|Your library books are overdue.|你借的圖書館書已經逾期了。\noversee|v.|監督|She oversees the entire project.|她監督整個專案。\npatronage|n.|惠顧|Thank you for your continued patronage.|感謝您一直以來的惠顧。\nperiodically|adv.|定期地|The system is checked periodically.|系統會定期檢查。\npersonnel|n.|人員；人事|Only authorized personnel may enter.|僅限授權人員進入。\npreliminary|adj.|初步的|The preliminary results look good.|初步結果看起來不錯。\npremises|n.|場所；建物|Smoking is not allowed on the premises.|本場所內禁止吸菸。\nprerequisite|n.|先決條件|A degree is a prerequisite for the job.|學位是這份工作的先決條件。\nprocurement|n.|採購|The procurement team handles all purchases.|採購團隊負責所有購買事宜。\nproficient|adj.|熟練的|Applicants must be proficient in Excel.|應徵者必須熟練使用 Excel。\nprohibit|v.|禁止|Photography is prohibited in the museum.|博物館內禁止攝影。\npromptly|adv.|迅速地；準時地|The meeting will start promptly at nine.|會議將在九點準時開始。\nproximity|n.|鄰近|The hotel's proximity to the airport is convenient.|飯店離機場很近，十分方便。\nqualified|adj.|合格的；有資格的|We are looking for qualified candidates.|我們正在尋找合格的人選。\nquota|n.|配額；目標額|He met his sales quota early.|他提早達成了業績目標。\nreimburse|v.|報銷；償還|Travel expenses will be reimbursed.|差旅費可以報銷。\nrelocate|v.|搬遷；調派|The company relocated to Taichung.|公司搬到了台中。\nrenowned|adj.|著名的|The hotel is renowned for its service.|這家飯店以服務聞名。\nrespectively|adv.|分別地|Tom and Amy were promoted to manager and director, respectively.|湯姆和艾咪分別升為經理和總監。\nretain|v.|保留；留住|Please retain your receipt.|請保留您的收據。\nrevenue|n.|營收|Revenue rose 8 percent this year.|今年營收成長了百分之八。\nrevise|v.|修訂|The schedule has been revised.|時程表已修訂。\nstreamline|v.|精簡流程|We streamlined the ordering process.|我們精簡了訂購流程。\nsubsequent|adj.|隨後的|Subsequent meetings will be held online.|之後的會議將在線上舉行。\nsubsidiary|n.|子公司|The firm opened a subsidiary in Vietnam.|公司在越南設立了子公司。\nsubstantial|adj.|大量的；可觀的|There was a substantial increase in sales.|銷售額大幅增加。\nsurplus|n.|盈餘；過剩|The city has a budget surplus.|市政府有預算盈餘。\ntentative|adj.|暫定的|The tentative date is June 5.|暫定日期是六月五日。\nterminate|v.|終止|The contract was terminated early.|合約提前終止了。\ntransaction|n.|交易|Each transaction is recorded.|每筆交易都會被記錄。\nundergo|v.|經歷；接受|The building will undergo renovations.|這棟大樓將進行翻修。\nupcoming|adj.|即將到來的|Please note the upcoming holiday schedule.|請留意即將到來的假期時程。\nutilize|v.|利用|We utilize the latest technology.|我們運用最新科技。\nvalid|adj.|有效的|The coupon is valid until May 31.|這張優惠券有效期限到五月三十一日。\nvendor|n.|廠商；攤商|We are looking for a new vendor.|我們正在找新的廠商。\nvenue|n.|會場|The venue has been changed to the Grand Hotel.|會場已改到大飯店。\nwaive|v.|免除|The fee will be waived for members.|會員免收這筆費用。\nwarranty|n.|保固|The laptop comes with a two-year warranty.|這台筆電附兩年保固。\nwithdraw|v.|撤回；提款|He withdrew his application.|他撤回了申請。\nyield|v./n.|產生；產量|The new method yielded better results.|新方法帶來了更好的結果。\non behalf of|ph.|代表|I'm writing on behalf of Mr. Wu.|我代表吳先生寫這封信。\nin accordance with|ph.|依照|Refunds are issued in accordance with our policy.|退款依照我們的規定辦理。\nat your earliest convenience|ph.|在您方便時盡早|Please reply at your earliest convenience.|請您方便時盡早回覆。\nbe subject to|ph.|受…影響；可能會|Prices are subject to change.|價格可能會有所變動。\nprior to|ph.|在…之前|Please arrive 15 minutes prior to the event.|請在活動開始前十五分鐘抵達。\nregardless of|ph.|不論|The fee is the same regardless of age.|不論年齡，費用都一樣。\nin the event of|ph.|萬一|In the event of rain, the event will move indoors.|萬一下雨，活動將移到室內。\nas of|ph.|自…起|As of June 1, the office will open at 8.|自六月一日起，辦公室八點開門。\npending|adj./prep.|待定的；在…之前|The decision is pending approval.|這項決定尚待核准。\naccessible|adj.|可進入的；易取得的|The building is accessible by wheelchair.|這棟大樓可供輪椅進出。\naccordingly|adv.|相應地|Prices will be adjusted accordingly.|價格將做相應調整。\naccumulate|v.|累積|You can accumulate points with every purchase.|每次消費都能累積點數。\naccurate|adj.|準確的|Please make sure the figures are accurate.|請確認數字是否正確。\nacknowledge|v.|承認；確認收到|Please acknowledge receipt of this letter.|請確認您已收到這封信。\nadequate|adj.|足夠的|The room has adequate lighting.|房間的照明充足。\nadhere to|v.|遵守|All staff must adhere to the dress code.|所有員工都必須遵守服裝規定。\nadjust|v.|調整|You can adjust the height of the chair.|你可以調整椅子的高度。\nadministrative|adj.|行政的|She handles administrative tasks.|她處理行政工作。\nadvocate|v./n.|提倡；擁護者|He advocates flexible working hours.|他提倡彈性工時。\naffiliate|n./v.|附屬機構；隸屬|The hotel is an affiliate of a major chain.|這家飯店隸屬於一個大型連鎖集團。\naffordable|adj.|負擔得起的|We offer affordable housing options.|我們提供價格實惠的住宅選擇。\nagreement|n.|協議|The two firms reached an agreement.|兩家公司達成了協議。\namenity|n.|便利設施|The hotel amenities include a spa and a gym.|飯店設施包括水療中心和健身房。\namend|v.|修改（法規、合約）|The contract was amended to include a new clause.|合約已修改，加入新條款。\nappliance|n.|家電|We sell kitchen appliances.|我們販售廚房家電。\nappraisal|n.|評估；考核|Performance appraisals are held every December.|績效考核每年十二月舉行。\nappreciate|v.|感謝；欣賞|We appreciate your prompt reply.|感謝您迅速的回覆。\napprentice|n.|學徒|He started as an apprentice at the factory.|他從工廠學徒做起。\nappropriate|adj.|適當的|Please wear appropriate clothing.|請穿著合宜的服裝。\nasset|n.|資產|She is a great asset to our team.|她是我們團隊的重要資產。\nattendee|n.|出席者|All attendees will receive a name badge.|所有出席者都會拿到名牌。\nattire|n.|服裝|Business attire is required.|須著商務服裝。\naudit|n./v.|稽核；查帳|The annual audit begins next week.|年度稽核下週開始。\nauthentic|adj.|真正的；道地的|The restaurant serves authentic Thai food.|這家餐廳供應道地泰式料理。\nautomate|v.|自動化|The company automated its billing system.|公司把請款系統自動化了。\nbacklog|n.|積壓的工作|We have a backlog of orders to process.|我們有一批積壓的訂單待處理。\nbankrupt|adj.|破產的|The airline went bankrupt last year.|這家航空公司去年破產了。\nbid|n./v.|投標；出價|Three companies submitted bids for the project.|有三家公司投標這個專案。\nbulk|n./adj.|大量|We offer discounts on bulk orders.|大量訂購有折扣。\nbulletin|n.|公告；快報|The news was posted in the company bulletin.|消息已刊登在公司公告上。\ncandidacy|n.|候選資格|She announced her candidacy for the board.|她宣布參選董事。\ncapable|adj.|有能力的|He is capable of managing large projects.|他有能力管理大型專案。\ncater|v.|承辦宴席；迎合|The lunch will be catered by a local restaurant.|午餐將由當地餐廳承辦。\ncertified|adj.|經認證的|We only hire certified electricians.|我們只雇用有證照的電工。\ncirculate|v.|傳閱；流通|Please circulate this memo to all staff.|請將這份備忘錄傳閱給所有員工。\nclarify|v.|澄清；說明|Could you clarify the terms of the contract?|您可以說明一下合約條款嗎？\nclause|n.|條款|Please read the cancellation clause carefully.|請仔細閱讀取消條款。\ncollaborate|v.|合作|The two teams collaborated on the design.|兩個團隊合作完成設計。\ncommission|n.|佣金；委託|Sales staff earn a commission on each sale.|業務人員每筆銷售都有佣金。\ncommitment|n.|承諾；投入|We thank you for your commitment to the project.|感謝您對這個專案的投入。\ncommuter|n.|通勤者|The new train line will help commuters.|新的鐵路線將造福通勤族。\ncompatible|adj.|相容的|This software is compatible with most computers.|這套軟體與大多數電腦相容。\ncompile|v.|彙編；整理|She compiled a list of potential clients.|她整理了一份潛在客戶名單。\ncomponent|n.|零件；組成部分|The factory produces electronic components.|這間工廠生產電子零件。\nconclude|v.|結束；下結論|The conference concluded with a dinner.|研討會以晚宴作結。\nconfidential|adj.|機密的|This information is strictly confidential.|這項資訊屬於最高機密。\nconscientious|adj.|認真負責的|She is a conscientious worker.|她是個認真負責的員工。\nconsiderable|adj.|相當大的|The project required considerable effort.|這個專案需要相當大的努力。\nconstraint|n.|限制|We are working under tight budget constraints.|我們在預算緊縮的限制下工作。\nconsumer|n.|消費者|Consumer spending increased in December.|十二月的消費者支出增加。\ncontractor|n.|承包商|The contractor finished the work ahead of schedule.|承包商提前完工。\ncontribute|v.|貢獻；捐助|Everyone contributed ideas to the plan.|每個人都為計畫貢獻了想法。\nconveniently|adv.|便利地|The hotel is conveniently located near the station.|飯店位置便利，靠近車站。\ncorrespondence|n.|往來信件|Please keep all correspondence with the client.|請保留與客戶的所有往來信件。\ncourier|n.|快遞|The documents were sent by courier.|文件以快遞寄出。\ncredentials|n.|資歷；證明文件|Please show your credentials at the entrance.|請在入口出示您的證件。\ncriteria|n.|標準（複數）|Applicants must meet the following criteria.|應徵者必須符合以下標準。\ncrucial|adj.|關鍵的|Customer feedback is crucial to our success.|顧客回饋是我們成功的關鍵。\ncutting-edge|adj.|尖端的|The lab uses cutting-edge equipment.|實驗室使用尖端設備。\ndeduct|v.|扣除|Taxes are deducted from your salary.|稅款會從你的薪水中扣除。\ndeficit|n.|赤字|The company reported a trade deficit.|公司公布貿易赤字。\ndelegate|v./n.|委派；代表|A good manager knows how to delegate tasks.|好的主管懂得分派工作。\ndemonstrate|v.|示範；證明|The sales rep demonstrated the new device.|業務代表示範了新裝置。\ndependable|adj.|可靠的|We need a dependable supplier.|我們需要一家可靠的供應商。\ndepreciation|n.|折舊；貶值|Car values suffer from depreciation.|汽車價值會因折舊而下降。\ndeteriorate|v.|惡化|The road conditions deteriorated quickly.|路況迅速惡化。\ndiligent|adj.|勤奮的|He is a diligent and reliable employee.|他是個勤奮又可靠的員工。\ndimension|n.|尺寸|Please check the dimensions of the box.|請確認箱子的尺寸。\ndiminish|v.|減少|The risk has diminished over time.|風險隨著時間降低了。\ndisclose|v.|揭露|The company did not disclose the price.|公司沒有公開價格。\ndiscrepancy|n.|差異；不一致|There is a discrepancy in the figures.|數字有出入。\ndispatch|v.|派遣；發送|The order was dispatched this morning.|訂單今天早上已出貨。\ndispose of|v.|處理掉|Please dispose of old batteries properly.|請妥善處理廢電池。\ndistinguished|adj.|傑出的；卓越的|We welcome our distinguished guests.|我們歡迎各位貴賓。\ndiversify|v.|多元化|The company plans to diversify its products.|公司計畫讓產品多元化。\ndividend|n.|股利|Shareholders received a higher dividend.|股東領到更高的股利。\ndurable|adj.|耐用的|These bags are made of durable material.|這些包包是用耐用材質製成。\neconomical|adj.|節省的；經濟的|Taking the train is more economical.|搭火車比較省錢。\nefficiency|n.|效率|The new system improved efficiency.|新系統提升了效率。\nelaborate|adj./v.|精緻的；詳細說明|Could you elaborate on your proposal?|您可以詳細說明您的提案嗎？\neliminate|v.|消除|We must eliminate unnecessary costs.|我們必須刪除不必要的成本。\nemphasize|v.|強調|The CEO emphasized the importance of safety.|執行長強調了安全的重要性。\nenforce|v.|執行；實施|The new rules will be strictly enforced.|新規定將被嚴格執行。\nengagement|n.|約定；參與|I have a prior engagement on Friday.|我星期五已經有約了。\nenroll|v.|註冊；報名|You can enroll in the course online.|你可以上網報名這門課。\nentitle|v.|使有權利|Members are entitled to a 15% discount.|會員有權享有八五折。\nequivalent|adj./n.|相等的；等值物|The fee is equivalent to one month's rent.|這筆費用相當於一個月的房租。\nevaluate|v.|評估|We will evaluate all proposals carefully.|我們會仔細評估所有提案。\nexceed|v.|超過|Sales exceeded our expectations.|銷售超出我們的預期。\nexclusive|adj.|獨家的；專屬的|Members get exclusive offers.|會員享有專屬優惠。\nexecutive|n./adj.|主管；行政的|She is a senior executive at the bank.|她是這家銀行的高階主管。\nexempt|adj.|免除的|Small businesses are exempt from this tax.|小型企業免繳這項稅。\nexpire|v.|到期|My passport expires next year.|我的護照明年到期。\nexplicit|adj.|明確的|The instructions were very explicit.|說明非常明確。\nexposure|n.|曝光；接觸|The ad campaign gave us great exposure.|廣告活動讓我們大幅曝光。\nfabric|n.|布料|The fabric is soft and durable.|這種布料柔軟又耐用。\nfiscal|adj.|財政的；會計年度的|The fiscal year ends in March.|會計年度在三月結束。\nfixture|n.|固定裝置|The light fixtures will be replaced.|燈具將會更換。\nfleet|n.|車隊；船隊|The company has a fleet of delivery trucks.|公司有一支送貨卡車車隊。\nforesee|v.|預見|We don't foresee any problems.|我們預期不會有任何問題。\nfranchise|n.|加盟店；特許經營|He owns three coffee shop franchises.|他擁有三家咖啡加盟店。\nfundraiser|n.|募款活動|The charity is holding a fundraiser.|慈善機構正在舉辦募款活動。\ngenerate|v.|產生|The new product generated a lot of interest.|新產品引起許多關注。\ngenerous|adj.|慷慨的|Thank you for your generous donation.|感謝您慷慨的捐款。\ngrant|n./v.|補助金；給予|The museum received a government grant.|博物館獲得政府補助金。\ngratitude|n.|感激|We would like to express our gratitude.|我們想表達感謝之意。\nguideline|n.|準則|Please follow the safety guidelines.|請遵守安全準則。\nhesitate|v.|猶豫|Don't hesitate to contact us.|請隨時與我們聯絡。\nhospitality|n.|款待；餐旅業|Thank you for your warm hospitality.|謝謝您熱情的款待。\nidentical|adj.|相同的|The two reports are almost identical.|這兩份報告幾乎一模一樣。\nimperative|adj.|極重要的|It is imperative that we finish on time.|我們必須準時完成，這極為重要。\nimpose|v.|強加；徵收|The city imposed a new parking fee.|市政府開徵新的停車費。\ninaugural|adj.|首屆的；就職的|The inaugural meeting will be held in May.|首屆會議將於五月舉行。\ninclement|adj.|（天氣）惡劣的|The game was canceled due to inclement weather.|比賽因天候不佳取消。\nindicate|v.|指出；顯示|The survey indicates that customers are happy.|調查顯示顧客很滿意。\ninfluential|adj.|有影響力的|She is an influential leader in the industry.|她是業界有影響力的領袖。\ningredient|n.|成分；食材|We only use fresh ingredients.|我們只使用新鮮食材。\ninitiative|n.|新方案；主動性|The company launched a recycling initiative.|公司推出一項回收計畫。\ninnovative|adj.|創新的|They have an innovative approach to design.|他們的設計方式很創新。\ninsight|n.|洞察|The report provides useful insight into the market.|這份報告提供了對市場的實用見解。\ninspection|n.|檢查|The building passed the safety inspection.|大樓通過了安全檢查。\nintend|v.|打算|We intend to open two new stores.|我們打算開兩家新店。\ninterim|adj.|臨時的；過渡期的|He was named interim director.|他被任命為代理主任。\nintermission|n.|中場休息|There will be a 15-minute intermission.|將有十五分鐘的中場休息。\ninvest|v.|投資|The company invested heavily in research.|公司在研究上投入大量資金。\nlandmark|n.|地標|The tower is a famous city landmark.|這座塔是著名的城市地標。\nlapse|v./n.|失效；疏失|Don't let your membership lapse.|別讓您的會員資格失效。\nlayout|n.|配置；版面|We changed the layout of the store.|我們改變了店內的配置。\nlegitimate|adj.|合法的；正當的|Please provide a legitimate reason for absence.|請提供正當的缺席理由。\nliability|n.|責任；負債|The company accepts no liability for lost items.|公司對遺失物品不負責任。\nliaison|n.|聯絡人|She acts as a liaison between the two teams.|她擔任兩個團隊之間的聯絡人。\nlengthy|adj.|冗長的|The meeting was lengthy but productive.|會議很冗長但有成果。\nlogistics|n.|物流；後勤|He manages logistics for the event.|他負責活動的後勤。\nmalfunction|n./v.|故障|The delay was caused by an equipment malfunction.|延誤是由設備故障造成的。\nmarkedly|adv.|顯著地|Sales have improved markedly.|銷售顯著改善。\nmeticulous|adj.|一絲不苟的|She is meticulous about details.|她對細節一絲不苟。\nmilestone|n.|里程碑|The company reached a major milestone.|公司達成了一個重要里程碑。\nminutes|n.|會議紀錄|Who will take the minutes today?|今天誰負責做會議紀錄？\nmobilize|v.|動員|We mobilized volunteers for the cleanup.|我們動員志工參與清掃。\nmodify|v.|修改|You can modify your order before it ships.|出貨前您可以修改訂單。\nmonitor|v./n.|監控；螢幕|We monitor the temperature every hour.|我們每小時監測溫度。\nmortgage|n.|房貸|They took out a mortgage to buy the house.|他們申請房貸買房子。\nnominate|v.|提名|She was nominated for the award.|她獲得這個獎項的提名。\nnotable|adj.|值得注意的；著名的|There has been a notable increase in sales.|銷售有顯著的成長。\nnoticeable|adj.|明顯的|There was a noticeable drop in costs.|成本明顯下降。\nobjective|n./adj.|目標；客觀的|Our main objective is to reduce costs.|我們的主要目標是降低成本。\nobligation|n.|義務|There is no obligation to buy.|沒有購買的義務。\nobsolete|adj.|過時的|This software is now obsolete.|這套軟體已經過時了。\noperational|adj.|運作中的|The new factory will be operational in May.|新工廠將於五月開始運作。\noptimistic|adj.|樂觀的|We are optimistic about next year.|我們對明年很樂觀。\noptional|adj.|選擇性的|The city tour is optional.|市區觀光是自由參加的。\norientation|n.|新人訓練；說明會|New employees must attend orientation.|新進員工必須參加新人訓練。\noutage|n.|停電；中斷|There was a power outage last night.|昨晚停電了。\noutlet|n.|插座；暢貨中心|Is there a power outlet near the desk?|桌子附近有插座嗎？\noutline|n./v.|大綱；概述|She outlined the plan for next year.|她概述了明年的計畫。\noutput|n.|產量|Factory output rose by 5 percent.|工廠產量成長了百分之五。\noutsource|v.|外包|The company outsources its customer service.|公司把客服外包出去。\noverhaul|v./n.|徹底檢修|The engine needs a complete overhaul.|引擎需要徹底檢修。\noverlook|v.|忽略；俯瞰|The hotel overlooks the harbor.|飯店可以俯瞰港口。\noversight|n.|疏忽；監督|The error was due to an oversight.|這個錯誤是疏忽造成的。\npaperwork|n.|文書工作|Please complete the paperwork before Friday.|請在星期五前完成文書作業。\npayroll|n.|薪資帳冊；發薪|The payroll department handles salaries.|薪資部門負責處理薪水。\nperishable|adj.|易腐壞的|Perishable goods must be kept cold.|易腐壞的商品必須冷藏。\npermanent|adj.|永久的；正式的|She was offered a permanent position.|她獲得了正職工作。\npersuade|v.|說服|We persuaded the client to sign the deal.|我們說服客戶簽約。\npharmaceutical|adj.|製藥的|He works for a pharmaceutical company.|他在一家製藥公司工作。\nportfolio|n.|作品集；投資組合|Please bring your design portfolio.|請攜帶您的設計作品集。\npotential|adj./n.|潛在的；潛力|We met with several potential clients.|我們和幾位潛在客戶見了面。\nprecaution|n.|預防措施|Please take safety precautions.|請採取安全預防措施。\npredecessor|n.|前任|Her predecessor retired last year.|她的前任去年退休。\npreference|n.|偏好|Please indicate your seating preference.|請註明您偏好的座位。\npremium|n./adj.|保費；高級的|The insurance premium went up this year.|今年保險費上漲了。\nprestigious|adj.|有聲望的|He graduated from a prestigious university.|他畢業於一所知名大學。\nprioritize|v.|排定優先順序|We need to prioritize customer requests.|我們需要優先處理客戶的要求。\nprojection|n.|預測；投影|Sales projections for next year are high.|明年的銷售預測很高。\nprominent|adj.|著名的；顯眼的|A prominent architect designed the museum.|一位知名建築師設計了這座博物館。\nproofread|v.|校對|Please proofread the report before sending it.|寄出前請先校對報告。\nprospective|adj.|潛在的；未來的|We sent brochures to prospective customers.|我們寄送簡介給潛在客戶。\nprosperous|adj.|繁榮的|It was a prosperous year for the company.|那是公司興盛的一年。\nprovision|n.|條款；供應|The contract includes a provision for delays.|合約中有關於延誤的條款。\npunctual|adj.|準時的|Please be punctual for the meeting.|開會請準時。\nquarterly|adj.|每季的|The quarterly report is due next week.|季報下週要交。\nquestionnaire|n.|問卷|Please fill out this short questionnaire.|請填寫這份簡短的問卷。\nrapidly|adv.|迅速地|The company is growing rapidly.|公司成長迅速。\nreadily|adv.|容易地；樂意地|The product is readily available in stores.|這項產品在店裡很容易買到。\nrebate|n.|退款；折扣|You will receive a rebate by mail.|你會收到郵寄的退款。\nrecipient|n.|收件人；得獎者|She was the recipient of the award.|她是這個獎項的得主。\nreconcile|v.|核對；調和|Please reconcile the accounts every month.|請每個月核對帳目。\nrecruit|v./n.|招募；新人|We are recruiting sales staff.|我們正在招募業務人員。\nredeem|v.|兌換|Points can be redeemed for gifts.|點數可以兌換禮品。\nreferral|n.|推薦；轉介|We received many new clients through referrals.|我們透過推薦得到許多新客戶。\nrefurbish|v.|整修|The hotel rooms were refurbished last year.|飯店房間去年整修過。\nregional|adj.|地區的|She is the regional sales manager.|她是區域業務經理。\nregulation|n.|規定；法規|Please follow all safety regulations.|請遵守所有安全法規。\nreinforce|v.|加強|The walls were reinforced with steel.|牆壁以鋼材加強。\nreliable|adj.|可靠的|This is a reliable car.|這是一輛可靠的車。\nreluctant|adj.|不情願的|He was reluctant to change the plan.|他不太願意更改計畫。\nremainder|n.|剩餘部分|The remainder of the payment is due in June.|剩餘款項於六月到期。\nremarkable|adj.|非凡的|The team made remarkable progress.|團隊取得了顯著的進展。\nremit|v.|匯款|Please remit payment within 30 days.|請於三十天內匯款。\nremote|adj.|遠端的；偏遠的|Many employees now work remotely.|許多員工現在遠端工作。\nrenewal|n.|續約；更新|Your subscription is due for renewal.|您的訂閱即將需要續約。\nreplacement|n.|替代品；接任者|We are looking for a replacement for Ms. Lee.|我們正在找人接替李小姐。\nreputation|n.|聲譽|The hotel has an excellent reputation.|這家飯店的聲譽很好。\nresign|v.|辭職|He resigned from his position last month.|他上個月辭職了。\nresolve|v.|解決|The problem was resolved quickly.|問題很快就解決了。\nrestore|v.|恢復；修復|Power was restored after two hours.|兩小時後恢復供電。\nrestriction|n.|限制|There are no restrictions on parking here.|這裡停車沒有限制。\nrésumé|n.|履歷|Please email your résumé to HR.|請將履歷寄給人資部。\nretail|n./adj.|零售|She has ten years of retail experience.|她有十年的零售業經驗。\nretrieve|v.|取回|You can retrieve your files from the server.|你可以從伺服器取回檔案。\nrevenue stream|n.|收入來源|The app is a new revenue stream for us.|這個應用程式是我們新的收入來源。\nrigorous|adj.|嚴格的|All products go through rigorous testing.|所有產品都經過嚴格測試。\nroutine|n./adj.|例行的|The inspection is just a routine check.|這次檢查只是例行檢查。\nscrutinize|v.|仔細檢查|The auditors scrutinized the records.|稽核人員仔細檢查了紀錄。\nseasoned|adj.|經驗豐富的|We hired a seasoned project manager.|我們聘請了一位經驗豐富的專案經理。\nsecure|v./adj.|取得；安全的|We secured a contract with a major retailer.|我們取得了一家大型零售商的合約。\nshareholder|n.|股東|The shareholders' meeting is in April.|股東大會在四月舉行。\nshortage|n.|短缺|There is a shortage of skilled workers.|技術工人短缺。\nsophisticated|adj.|精密的；講究的|The lab has sophisticated equipment.|實驗室有精密的設備。\nspecialize in|v.|專精於|The firm specializes in tax law.|這家事務所專精稅法。\nspecifications|n.|規格|The product meets all specifications.|產品符合所有規格。\nsponsor|n./v.|贊助|The event is sponsored by a local bank.|這場活動由當地銀行贊助。\nspokesperson|n.|發言人|A company spokesperson confirmed the news.|公司發言人證實了這則消息。\nstakeholder|n.|利害關係人|We will meet with all stakeholders.|我們將與所有利害關係人會面。\nstationery|n.|文具|Stationery is kept in the supply room.|文具放在用品室。\nstatistics|n.|統計數據|The statistics show a rise in sales.|統計數據顯示銷售上升。\nstipulate|v.|規定|The contract stipulates a delivery date.|合約規定了交貨日期。\nstrategy|n.|策略|We need a new marketing strategy.|我們需要新的行銷策略。\nsubmission|n.|提交；提交物|The deadline for submissions is May 1.|提交截止日是五月一日。\nsubscribe|v.|訂閱|You can subscribe to our newsletter.|你可以訂閱我們的電子報。\nsubscription|n.|訂閱|Your subscription will renew automatically.|您的訂閱將自動續約。\nsuccessor|n.|繼任者|He trained his successor before retiring.|他退休前訓練了接班人。\nsufficient|adj.|足夠的|We have sufficient funds for the project.|我們有足夠的資金執行這個專案。\nsupervise|v.|監督；管理|She supervises a team of ten.|她管理一個十人團隊。\nsurpass|v.|超越|This year's profits surpassed last year's.|今年的利潤超越了去年。\nsurroundings|n.|環境|The hotel has beautiful surroundings.|飯店周遭環境優美。\nsuspend|v.|暫停|Service was suspended due to the storm.|因暴風雨暫停服務。\ntailor|v.|量身打造|We tailor our services to each client.|我們為每位客戶量身打造服務。\ntariff|n.|關稅|The government raised tariffs on imports.|政府提高了進口關稅。\ntenure|n.|任期|During his tenure, sales doubled.|在他任內，銷售額翻倍。\ntestimonial|n.|推薦文；見證|The website features customer testimonials.|網站上有顧客推薦文。\nthorough|adj.|徹底的|We conducted a thorough review.|我們進行了徹底的檢視。\ntuition|n.|學費|The company pays half of the tuition.|公司負擔一半學費。\nturnover|n.|人員流動率；營業額|The company has a low staff turnover.|公司員工流動率很低。\nunanimous|adj.|一致同意的|The decision was unanimous.|這個決定是全體一致通過的。\nunprecedented|adj.|史無前例的|Sales reached an unprecedented level.|銷售達到前所未有的水準。\nunveil|v.|揭幕；公布|The company will unveil its new logo.|公司將公布新標誌。\nutility|n.|水電瓦斯等公用事業|Utilities are included in the rent.|房租包含水電費。\nvacancy|n.|空缺；空房|There are two vacancies in the sales team.|業務團隊有兩個職缺。\nverify|v.|核實|Please verify your email address.|請驗證您的電子郵件地址。\nviable|adj.|可行的|We need a viable alternative.|我們需要一個可行的替代方案。\nvoucher|n.|禮券；憑證|You will receive a meal voucher.|您會拿到一張餐券。\nwholesale|adj./n.|批發|We buy supplies at wholesale prices.|我們以批發價購買物資。\nworkload|n.|工作量|My workload has increased this month.|我這個月的工作量增加了。\nworkshop facilitator|n.|研習帶領人|The workshop facilitator will start soon.|研習帶領人即將開始。\nabundant|adj.|豐富的|The region has abundant natural resources.|這個地區天然資源豐富。\nacclaimed|adj.|受讚揚的|The acclaimed chef opened a new restaurant.|這位備受讚譽的主廚開了新餐廳。\naccommodation|n.|住宿|The price includes accommodation and meals.|價格包含住宿和餐點。\nalternative|n./adj.|替代方案|Is there an alternative route?|有替代路線嗎？\nanalyze|v.|分析|We analyzed the survey results.|我們分析了調查結果。\nanniversary|n.|週年紀念|The firm is celebrating its 50th anniversary.|公司正在慶祝成立五十週年。\napparel|n.|服飾|The store sells sports apparel.|這家店販售運動服飾。\napproval|n.|核准|The plan needs the director's approval.|這個計畫需要主任核准。\naspect|n.|方面|We discussed every aspect of the plan.|我們討論了計畫的每個面向。\nassurance|n.|保證|We give you our assurance of quality.|我們向您保證品質。\nattain|v.|達到|She attained the rank of vice president.|她晉升為副總裁。\nattentive|adj.|細心周到的|The staff were very attentive.|員工服務非常周到。\nbalance sheet|n.|資產負債表|The accountant prepared the balance sheet.|會計師編製了資產負債表。\nbanquet|n.|宴會|The awards banquet will be held at the hotel.|頒獎晚宴將在飯店舉行。\nbeneficial|adj.|有益的|The training was beneficial to all staff.|這次訓練對所有員工都有幫助。\nboost|v./n.|提升|The ad campaign boosted sales.|廣告活動提升了銷售。\nbrief|adj./v.|簡短的；簡報|The manager briefed us on the project.|經理向我們簡報專案內容。\nbroaden|v.|拓展|We want to broaden our customer base.|我們想擴大客群。\ncalculate|v.|計算|Please calculate the total cost.|請計算總成本。\ncapital|n.|資本|The company raised capital for expansion.|公司募集資金以擴張。\ncarry out|v.|執行|The survey was carried out last month.|調查上個月執行了。\nchairperson|n.|主席|The chairperson opened the meeting.|主席宣布會議開始。\ncharity|n.|慈善機構|All profits go to charity.|所有利潤都捐給慈善機構。\ncollaboration|n.|合作|The product is a collaboration between two brands.|這項產品是兩個品牌的合作成果。\ncommend|v.|稱讚|The manager commended her for her hard work.|經理稱讚她工作努力。\ncommerce|n.|商業|The city is a center of commerce.|這座城市是商業中心。\ncompetent|adj.|能幹的|He is a competent engineer.|他是一名能幹的工程師。\ncompetitive|adj.|有競爭力的|We offer competitive salaries.|我們提供具競爭力的薪資。\ncompliance|n.|遵守；法遵|The factory is in compliance with all rules.|工廠遵守所有規定。\nconduct|v.|進行；實施|We will conduct interviews next week.|我們下週將進行面試。\nconference call|n.|電話會議|We have a conference call at 3 p.m.|我們下午三點有電話會議。\nconfirmation|n.|確認（函）|You will receive a confirmation email.|您會收到一封確認信。\nconsistent|adj.|一致的；穩定的|The company has shown consistent growth.|公司持續穩定成長。\nconsultant|n.|顧問|We hired a consultant to review our process.|我們聘請了顧問檢視我們的流程。\nconvene|v.|召集；開會|The committee will convene next Monday.|委員會將於下週一召開。\ncorporate|adj.|公司的|The corporate office is in Taipei.|公司總部在台北。\ncourteous|adj.|有禮貌的|The staff were courteous and helpful.|員工有禮又樂於助人。\ncoverage|n.|保險範圍；報導|Does the insurance coverage include dental care?|保險範圍有包含牙科嗎？\ncurrency|n.|貨幣|You can exchange currency at the airport.|你可以在機場換外幣。\ncustomize|v.|客製化|You can customize the design online.|你可以在網路上客製化設計。\ndeadline extension|n.|延長期限|We requested a deadline extension.|我們申請延長期限。\ndedicated|adj.|專注的；專用的|She is a dedicated teacher.|她是一位盡心盡力的老師。\ndeliberately|adv.|故意地；審慎地|The price was deliberately kept low.|價格刻意壓低。\ndestination|n.|目的地|Bali is a popular travel destination.|峇里島是熱門的旅遊目的地。\ndetermine|v.|決定；查明|We need to determine the cause of the problem.|我們需要查明問題的原因。\ndistribution|n.|分配；經銷|The company handles distribution in Asia.|這家公司負責亞洲的經銷。\ndistributor|n.|經銷商|We are looking for a distributor in Japan.|我們正在尋找日本的經銷商。\ndonation|n.|捐款|We received a large donation.|我們收到一筆大額捐款。\nemerge|v.|出現；浮現|A new market leader has emerged.|一個新的市場領導者出現了。\nenable|v.|使能夠|The software enables users to work faster.|這套軟體讓使用者能更快完成工作。\nencounter|v./n.|遇到|We encountered some problems with the system.|我們遇到了一些系統問題。\nendeavor|n./v.|努力|We wish you success in your future endeavors.|祝您未來一切順利。\nenthusiastic|adj.|熱情的|The audience was enthusiastic.|觀眾反應熱烈。\nexceptional|adj.|傑出的；例外的|She provided exceptional service.|她提供了卓越的服務。\nexcursion|n.|短程旅行|The tour includes an excursion to the lake.|行程包含湖邊一日遊。\nexpansion|n.|擴張|The expansion will create 200 jobs.|這次擴張將創造兩百個工作機會。\nexpertly|adv.|專業地|The room was expertly decorated.|房間經過專業的裝潢。\nextend|v.|延長；給予|We extended the deadline by a week.|我們把截止日延長了一週。\nextensive|adj.|廣泛的|She has extensive experience in sales.|她在業務方面經驗豐富。\nfavorable|adj.|有利的；好評的|The product received favorable reviews.|這項產品獲得好評。\nfeature|n./v.|特色；以…為特色|The new phone features a larger screen.|新手機的特色是螢幕更大。\nfinalize|v.|定案|We will finalize the contract tomorrow.|我們明天會敲定合約。\nflaw|n.|缺陷|The inspector found a flaw in the design.|檢查員發現設計上的缺陷。\nfragile|adj.|易碎的|Handle with care. The contents are fragile.|小心輕放，內容物易碎。\nheadline|n.|頭條|The merger made headlines last week.|合併案上週登上頭條。\nimplementation|n.|實施|The implementation of the system took months.|系統的導入花了好幾個月。\nimprovement|n.|改善|There has been a big improvement in sales.|銷售大幅改善。\ninconvenience|n.|不便|We apologize for any inconvenience.|造成不便，敬請見諒。\nincreasingly|adv.|越來越|Online shopping is increasingly popular.|網路購物越來越受歡迎。\ninformative|adj.|有教育性的；資訊豐富的|The seminar was very informative.|這場研討會內容很充實。\ninspire|v.|激勵|Her speech inspired many employees.|她的演講激勵了許多員工。\ninstruct|v.|指示|Staff were instructed to leave the building.|員工被指示離開大樓。\nintensive|adj.|密集的|The course is intensive.|這門課程很密集。\ninteract|v.|互動|The software lets users interact with each other.|這套軟體讓使用者可以互動。\ninventory control|n.|庫存管理|Good inventory control saves money.|良好的庫存管理能省錢。\ninvestor|n.|投資者|The investors were pleased with the results.|投資人對結果很滿意。\njustify|v.|證明…有理|Can you justify the extra cost?|你能說明額外成本的合理性嗎？\nkeynote|n.|主題演講|The keynote speech starts at 9 a.m.|主題演講上午九點開始。\nlucrative market|n.|獲利豐厚的市場|Asia is a lucrative market for us.|亞洲對我們來說是獲利豐厚的市場。\nmaximize|v.|最大化|We want to maximize our profits.|我們想讓利潤最大化。\nminimize|v.|減到最少|We want to minimize delays.|我們希望把延誤降到最低。\nmutual|adj.|相互的|The agreement is to our mutual benefit.|這份協議對雙方都有利。\nnegligible|adj.|微不足道的|The difference in price is negligible.|價差微乎其微。\nnonrefundable|adj.|不可退款的|The deposit is nonrefundable.|訂金恕不退還。\nnutritious|adj.|營養的|The cafeteria serves nutritious meals.|員工餐廳供應營養的餐點。\noccasion|n.|場合|This is a special occasion for our company.|這對我們公司來說是特別的場合。\nongoing|adj.|進行中的|The negotiations are ongoing.|協商仍在進行中。\nopening|n.|職缺；開幕|We have an opening for an accountant.|我們有一個會計職缺。\noutlook|n.|前景|The economic outlook is positive.|經濟前景樂觀。\npartnership|n.|合夥關係|We formed a partnership with a local firm.|我們和一家當地公司建立了合作關係。\nperspective|n.|觀點|Let's look at this from the customer's perspective.|我們從顧客的角度來看這件事。\npharmacist|n.|藥師|Ask the pharmacist about side effects.|向藥師詢問副作用。\npioneer|n./v.|先驅；開創|The company pioneered online banking.|這家公司開創了網路銀行。\nplummet|v.|暴跌|Stock prices plummeted after the news.|消息傳出後股價暴跌。\npolicyholder|n.|保戶|Policyholders can file claims online.|保戶可以在線上申請理賠。\npractical|adj.|實用的|The workshop offered practical advice.|研習提供了實用的建議。\nprecise|adj.|精確的|We need precise measurements.|我們需要精確的測量數據。\nproceed|v.|繼續進行；前往|Please proceed to Gate 5.|請前往五號登機門。\nproceeds|n.|收益|The proceeds will go to charity.|收益將捐給慈善機構。\nproductivity|n.|生產力|The new tools increased productivity.|新工具提升了生產力。\nproficiency|n.|熟練程度|English proficiency is required.|需具備英語能力。\nprospect|n.|前景；潛在客戶|The job offers good prospects for promotion.|這份工作有很好的升遷前景。\npublicity|n.|宣傳；曝光|The event attracted a lot of publicity.|這場活動吸引了大量關注。\nrecognition|n.|表揚；認可|She received recognition for her work.|她的工作表現獲得表揚。\nreception desk|n.|接待櫃台|Please leave the key at the reception desk.|請把鑰匙留在接待櫃台。\nrecommendation|n.|推薦（信）|He wrote a letter of recommendation for me.|他幫我寫了一封推薦信。\nrecovery|n.|復甦；恢復|The economy is showing signs of recovery.|經濟出現復甦跡象。\nreduction|n.|減少|We saw a reduction in costs.|我們看到成本下降。\nreflect|v.|反映|The price reflects the high quality.|價格反映出高品質。\nreliance|n.|依賴|We need to reduce our reliance on one supplier.|我們需要減少對單一供應商的依賴。\nreservation desk|n.|訂位櫃台|Please call the reservation desk.|請致電訂位櫃台。"};
+const GRAMMAR = [
+{t:"詞性判斷（名詞／動詞／形容詞／副詞）",l:`Part 5 最常考、也最快拿分的題型。<b>先看空格前後，不必讀懂整句。</b><br>• 冠詞 a/the/所有格 後 → <b>名詞</b>（the <u>success</u>）<br>• be 動詞後、名詞前 → <b>形容詞</b>（a <u>successful</u> plan）<br>• 修飾動詞、形容詞、整句 → <b>副詞</b>（-ly）（work <u>efficiently</u>）<br>• 主詞後缺動詞 → <b>動詞</b><br>常見字尾：-tion/-ment/-ness 名詞；-ful/-ive/-able/-ous 形容詞；-ly 副詞；-ize/-en 動詞。`,
+qs:[
+{q:"The new software allows employees to complete their tasks more -------.",o:["efficient","efficiently","efficiency","efficiencies"],a:1,ex:"修飾動詞 complete（more ___ 比較級）→ 副詞 efficiently。",z:"新軟體讓員工能更有效率地完成工作。"},
+{q:"Ms. Park was praised for her ------- to the community project.",o:["contribute","contributed","contribution","contributive"],a:2,ex:"所有格 her 後面接名詞 → contribution。",z:"朴小姐因她對社區計畫的貢獻而受到稱讚。"},
+{q:"The hotel staff were very ------- during our stay.",o:["help","helpful","helpfully","helped"],a:1,ex:"be 動詞 were 後 + very 修飾 → 形容詞 helpful。",z:"我們住宿期間，飯店員工非常熱心幫忙。"},
+{q:"Applicants should ------- their documents before the deadline.",o:["submission","submit","submitted","submitting"],a:1,ex:"助動詞 should 後接原形動詞 submit。",z:"應徵者應在截止日前繳交文件。"}]},
+{t:"動詞時態",l:`看<b>時間線索</b>決定時態：<br>• yesterday / last week / ago → <b>過去式</b><br>• since / for + 一段時間 / so far / recently → <b>現在完成式</b> have p.p.<br>• next / tomorrow / soon → <b>未來式</b> will / be going to（by + 未來時間 常用 will have p.p.）<br>• every day / usually → <b>現在簡單式</b><br>• <b>時間、條件子句（when / if / as soon as）用現在式代替未來式</b>：As soon as he <u>arrives</u>, we will start.`,
+qs:[
+{q:"Mr. Lee ------- for the company since 2015.",o:["works","worked","has worked","will work"],a:2,ex:"since 2015 → 現在完成式 has worked。",z:"李先生從 2015 年起就在這家公司工作。"},
+{q:"The new branch ------- next spring.",o:["opened","will open","has opened","opens to"],a:1,ex:"next spring 未來時間 → will open。",z:"新分店將在明年春天開幕。"},
+{q:"Please call me as soon as the shipment -------.",o:["arrives","will arrive","arrived","arriving"],a:0,ex:"as soon as 引導的時間子句用現在式代替未來式 → arrives。",z:"貨一到請馬上打電話給我。"},
+{q:"By the end of this month, we ------- over 500 orders.",o:["process","processed","will have processed","have been processed"],a:2,ex:"By + 未來時間點 → 未來完成式 will have processed。",z:"到這個月底，我們將已處理超過五百筆訂單。"}]},
+{t:"主動 vs 被動",l:`主詞是「做動作的人」→ 主動；主詞是「被處理的東西」→ <b>被動 be + p.p.</b><br>判斷技巧：<b>空格後有沒有受詞？</b>有受詞 → 多半主動；沒有受詞（直接接 by、介系詞或句點）→ 多半被動。<br>例：The report <u>was written</u> by Ms. Wu.／Ms. Wu <u>wrote</u> the report.`,
+qs:[
+{q:"All packages ------- within three business days.",o:["deliver","are delivered","delivering","have delivered"],a:1,ex:"包裹是「被運送」，且空格後無受詞 → 被動 are delivered。",z:"所有包裹都會在三個工作天內送達。"},
+{q:"The marketing team ------- a new campaign last week.",o:["launched","was launched","is launched","launching"],a:0,ex:"團隊主動推出，後有受詞 a new campaign → 主動 launched。",z:"行銷團隊上週推出了新的宣傳活動。"},
+{q:"The meeting has been ------- until Thursday.",o:["postpone","postponing","postponed","postpones"],a:2,ex:"has been + p.p. 被動完成式 → postponed。",z:"會議已延到星期四。"},
+{q:"Visitors are required ------- their ID at the front desk.",o:["show","to show","showing","shown"],a:1,ex:"be required to + 原形動詞（被要求去做）。",z:"訪客必須在櫃台出示身分證件。"}]},
+{t:"主詞動詞一致",l:`找出<b>真正的主詞</b>，跳過中間的修飾語（介系詞片語、關係子句）。<br>• The list <u>of items</u> <b>is</b> on the desk.（主詞是 list）<br>• Each / Every / Everyone → 單數<br>• A number of + 複數 → 複數；The number of + 複數 → 單數`,
+qs:[
+{q:"The manager of the stores ------- planning to visit next week.",o:["is","are","be","were"],a:0,ex:"真正主詞是 The manager（單數）→ is。",z:"這幾家店的經理打算下週來訪。"},
+{q:"Each of the participants ------- a certificate.",o:["receive","receives","receiving","have received"],a:1,ex:"Each of … 視為單數 → receives。",z:"每位參加者都會拿到一張證書。"},
+{q:"A number of employees ------- asked for flexible hours.",o:["has","have","is","was"],a:1,ex:"A number of + 複數名詞 = 很多 → 複數動詞 have。",z:"許多員工要求彈性工時。"},
+{q:"The results of the survey ------- surprising.",o:["was","were","is","has been"],a:1,ex:"主詞是 results（複數）→ were。",z:"這份調查的結果令人意外。"}]},
+{t:"代名詞與反身代名詞",l:`• 主格 I/he/they；受格 me/him/them；所有格 my/his/their（後接名詞）；所有格代名詞 mine/his/theirs（自己當名詞）。<br>• 反身代名詞 -self：主詞自己做自己，或 <b>by oneself（獨自）</b>、強調。<br>• 名詞前空格 → 所有格；動詞或介系詞後 → 受格。`,
+qs:[
+{q:"Ms. Chen prepared the presentation by -------.",o:["she","her","hers","herself"],a:3,ex:"by oneself = 獨自 → herself。",z:"陳小姐獨自準備了這份簡報。"},
+{q:"Please send ------- your updated schedule.",o:["I","me","my","mine"],a:1,ex:"動詞 send 後接受格 → me。",z:"請把你更新後的時程表寄給我。"},
+{q:"The company thanked ------- staff for their hard work.",o:["it","its","it's","itself"],a:1,ex:"名詞 staff 前接所有格 → its（it's = it is）。",z:"公司感謝員工們的辛勤工作。"},
+{q:"This desk is mine, and that one is -------.",o:["your","yours","you","yourself"],a:1,ex:"單獨當名詞用 → 所有格代名詞 yours。",z:"這張桌子是我的，那張是你的。"}]},
+{t:"介系詞 vs 連接詞",l:`同樣意思，看<b>後面接什麼</b>：<br>• 後接<b>名詞／動名詞</b> → 介系詞：because of, despite / in spite of, during, due to<br>• 後接<b>子句（主詞＋動詞）</b> → 連接詞：because, although / even though, while<br>例：<u>Despite</u> the rain, … ／ <u>Although</u> it rained, …`,
+qs:[
+{q:"------- the heavy traffic, Mr. Kim arrived on time.",o:["Although","Despite","Because","Even though"],a:1,ex:"後接名詞片語 the heavy traffic → 介系詞 Despite。",z:"儘管交通擁塞，金先生還是準時抵達。"},
+{q:"The store closed early ------- the staff could attend the party.",o:["so that","because of","in order to","due to"],a:0,ex:"後接完整子句表目的 → so that。",z:"商店提早打烊，好讓員工可以參加派對。"},
+{q:"No phone calls are allowed ------- the exam.",o:["while","during","when","since"],a:1,ex:"後接名詞 the exam → 介系詞 during。",z:"考試期間不准講電話。"},
+{q:"------- sales were lower than expected, the team received bonuses.",o:["Despite","Although","However","In spite of"],a:1,ex:"後接子句 sales were lower → 連接詞 Although。However 是副詞，不能直接連接兩個子句。",z:"雖然業績低於預期，團隊還是領到了獎金。"}]},
+{t:"關係代名詞",l:`• 先行詞是人 → who（主格）／whom（受格）／whose（所有格＋名詞）<br>• 先行詞是物 → which／that<br>• <b>whose 後面一定接名詞</b>：the client <u>whose order</u> was delayed<br>• what = the thing which，前面<b>沒有</b>先行詞。`,
+qs:[
+{q:"Employees ------- wish to attend must register by Friday.",o:["who","which","whose","whom"],a:0,ex:"先行詞 Employees 是人，且子句缺主詞 → who。",z:"想參加的員工必須在星期五前報名。"},
+{q:"The customer ------- order was lost has received a refund.",o:["who","whose","which","that"],a:1,ex:"空格後接名詞 order（他的訂單）→ whose。",z:"那位訂單遺失的顧客已經拿到退款了。"},
+{q:"The laptop ------- I bought last week is already broken.",o:["who","what","which","whose"],a:2,ex:"先行詞是物 laptop → which。",z:"我上週買的筆電已經壞了。"},
+{q:"------- the manager needs most is a reliable assistant.",o:["That","Which","What","Who"],a:2,ex:"前面沒有先行詞，表「…的東西」→ What。",z:"經理最需要的是一位可靠的助理。"}]},
+{t:"分詞（-ing / -ed）",l:`• <b>-ing 主動／令人…</b>：an <u>exciting</u> plan（令人興奮的計畫）、the man <u>standing</u> there<br>• <b>-ed 被動／感到…</b>：<u>excited</u> staff（感到興奮的員工）、the report <u>attached</u> to this email<br>口訣：<b>物用 -ing，人感受用 -ed</b>；名詞「被…」用 -ed。`,
+qs:[
+{q:"Please review the ------- document before the meeting.",o:["attach","attaching","attached","attachment"],a:2,ex:"文件是「被附上」的 → attached。",z:"請在會議前看過附件文件。"},
+{q:"The results of the test were very -------.",o:["disappoint","disappointing","disappointed","disappointment"],a:1,ex:"結果「令人失望」→ disappointing。",z:"測試結果非常令人失望。"},
+{q:"Customers ------- in the offer should call our office.",o:["interest","interesting","interested","interests"],a:2,ex:"顧客「感到有興趣」→ interested。",z:"對這項優惠有興趣的顧客請致電我們的辦公室。"},
+{q:"The woman ------- at the front desk is our new receptionist.",o:["sit","sitting","sat","seated by"],a:1,ex:"女子主動坐著 → 現在分詞 sitting 修飾 woman。",z:"坐在櫃台的那位女士是我們的新接待員。"}]},
+{t:"比較級與最高級",l:`• than → 比較級（-er / more）<br>• the + 最高級 + in/of/among／ever<br>• 加強比較級用 <b>much / far / even</b>（不能用 very）<br>• as + 原級 + as`,
+qs:[
+{q:"This year's sales are much ------- than last year's.",o:["high","higher","highest","highly"],a:1,ex:"than → 比較級 higher；much 加強比較級。",z:"今年的銷售額比去年高出許多。"},
+{q:"It is the ------- hotel in the city.",o:["large","larger","largest","most large"],a:2,ex:"the + 最高級 + in the city → largest。",z:"這是市內最大的飯店。"},
+{q:"The new model is as ------- as the old one.",o:["reliable","more reliable","most reliable","reliably"],a:0,ex:"as + 原級 + as → reliable。",z:"新型號和舊型號一樣可靠。"},
+{q:"Our prices are ------- lower than those of our competitors.",o:["very","far","most","so"],a:1,ex:"修飾比較級 lower 用 far / much / even，不用 very。",z:"我們的價格比競爭對手低得多。"}]},
+{t:"動名詞 vs 不定詞",l:`• 介系詞後 → <b>V-ing</b>（interested in <u>joining</u>）<br>• <b>look forward to / be committed to / be used to + V-ing</b>（這裡的 to 是介系詞！）<br>• 接 V-ing 的動詞：consider, avoid, enjoy, finish, suggest, recommend<br>• 接 to V 的動詞：plan, decide, hope, want, agree, expect`,
+qs:[
+{q:"We look forward to ------- you at the conference.",o:["see","seeing","seen","be seen"],a:1,ex:"look forward to + V-ing（to 是介系詞）。",z:"我們期待在研討會上見到您。"},
+{q:"The company decided ------- a new branch in Kaohsiung.",o:["open","opening","to open","opened"],a:2,ex:"decide + to V。",z:"公司決定在高雄開一家新分公司。"},
+{q:"Please avoid ------- personal calls during work hours.",o:["make","making","to make","made"],a:1,ex:"avoid + V-ing。",z:"上班時間請避免打私人電話。"},
+{q:"Thank you for ------- our store.",o:["visit","to visit","visiting","visited"],a:2,ex:"介系詞 for 後接 V-ing。",z:"感謝您光臨本店。"}]},
+{t:"連接副詞與轉折（Part 6 必考）",l:`連接副詞不能單獨連接兩個子句，常放句首加逗號：<br>• 轉折：<b>However</b>（然而）、Nevertheless<br>• 結果：<b>Therefore</b>、As a result、Consequently<br>• 補充：<b>In addition</b>、Furthermore、Moreover<br>• 舉例：For example；替代：Instead；否則：Otherwise<br><b>看前後兩句的邏輯關係</b>，比看文法更重要。`,
+qs:[
+{q:"The printer is broken. -------, we will use the one on the second floor.",o:["However","Therefore","For example","Otherwise"],a:1,ex:"印表機壞了 → 所以用二樓的（因果）→ Therefore。",z:"印表機壞了，因此我們會用二樓那台。"},
+{q:"The hotel is close to the airport. -------, it offers free parking.",o:["Instead","However","In addition","Otherwise"],a:2,ex:"兩個優點並列（補充）→ In addition。",z:"這家飯店離機場很近，此外還提供免費停車。"},
+{q:"Please submit the form by Friday. -------, your request may not be processed.",o:["Therefore","Otherwise","Moreover","Similarly"],a:1,ex:"「否則」申請可能不被處理 → Otherwise。",z:"請在星期五前繳交表格，否則您的申請可能無法處理。"},
+{q:"Sales increased in March. -------, profits fell because of higher costs.",o:["However","Therefore","In addition","For instance"],a:0,ex:"銷售增加 vs 利潤下降 → 轉折 However。",z:"三月的銷售額增加了。然而，因為成本上升，利潤反而下滑。"}]},
+{t:"假設與條件句",l:`• 一般條件（可能發生）：If + 現在式, will + V<br>• 與現在事實相反：If + 過去式(were), would + V<br>• 與過去事實相反：If + had p.p., would have p.p.<br>• <b>倒裝</b>：Should you have any questions = If you should have any questions（多益信件超常見！）<br>• unless = if not；provided that = 只要`,
+qs:[
+{q:"------- you have any questions, please contact our help desk.",o:["Should","Would","Had","Unless"],a:0,ex:"Should you have… = If you should have…，信件常用倒裝。",z:"如果您有任何問題，請聯絡我們的服務台。"},
+{q:"If the weather ------- good tomorrow, the event will be held outdoors.",o:["is","will be","were","has been"],a:0,ex:"一般條件句 if 子句用現在式。",z:"如果明天天氣好，活動將在戶外舉行。"},
+{q:"If I ------- more time, I would join the training course.",o:["have","had","will have","having"],a:1,ex:"與現在事實相反 → If + 過去式, would + V。",z:"如果我有更多時間，我就會參加訓練課程。"},
+{q:"You cannot enter the lab ------- you have a security badge.",o:["if","unless","because","so"],a:1,ex:"除非有識別證才能進入 → unless。",z:"除非你有安全識別證，否則不能進入實驗室。"}]}
+];
+
+const PART2 = [
+{q:"When does the meeting start?",o:["In conference room B.","At two thirty.","Yes, I'll be there."],a:1,ex:"When 問時間 → At two thirty。Wh- 問句不能用 Yes/No 回答。",qz:"會議什麼時候開始？",oz:["在 B 會議室。","兩點半。","是的，我會到。"]},
+{q:"Where can I find the printer paper?",o:["In the supply closet.","Fifty pages, please.","He printed it yesterday."],a:0,ex:"Where 問地點 → In the supply closet。小心 print/printed 的相似音陷阱。",qz:"印表機的紙在哪裡？",oz:["在用品櫃裡。","請給我五十頁。","他昨天印了。"]},
+{q:"Who is in charge of the new project?",o:["It's free of charge.","Ms. Patel is leading it.","Next Monday."],a:1,ex:"Who 問人 → Ms. Patel。charge 是重複字陷阱。",qz:"誰負責新專案？",oz:["這是免費的。","帕特爾小姐在帶領。","下星期一。"]},
+{q:"Why was the flight delayed?",o:["Because of the snowstorm.","A window seat, please.","About two hours."],a:0,ex:"Why 問原因 → Because of…",qz:"班機為什麼延誤？",oz:["因為暴風雪。","請給我靠窗座位。","大約兩小時。"]},
+{q:"Would you like some coffee?",o:["Thanks, but I just had some.","It's on the table.","He likes it a lot."],a:0,ex:"提議 → 接受或婉拒。",qz:"你要來點咖啡嗎？",oz:["謝謝，不過我剛喝過了。","在桌上。","他很喜歡。"]},
+{q:"Didn't you send the invoice yesterday?",o:["Yes, I did it this morning.","I sent it last week, actually.","The price is too high."],a:1,ex:"否定疑問句：回答事實即可。B 說明其實上週就寄了。A 自相矛盾（Yes 但說今天早上）。",qz:"你昨天不是寄出請款單了嗎？",oz:["是的，我今天早上寄的。","其實我上週就寄了。","價格太高了。"]},
+{q:"How long will the repairs take?",o:["About three days.","It's very long.","The repair shop on Main Street."],a:0,ex:"How long 問時間長度 → About three days。",qz:"修理要多久？",oz:["大約三天。","它非常長。","主街上的那家修理店。"]},
+{q:"Should we take a taxi or the subway?",o:["Yes, we should.","The subway is faster at this hour.","I took it yesterday."],a:1,ex:"選擇疑問句（A or B）→ 選一個，不能答 Yes/No。",qz:"我們該搭計程車還是捷運？",oz:["是的，我們應該。","這個時段捷運比較快。","我昨天搭過了。"]},
+{q:"The copier on the third floor isn't working.",o:["I'll call the technician.","Yes, three copies.","He works on the third floor."],a:0,ex:"直述句表達問題 → 回應處理方式。",qz:"三樓的影印機壞了。",oz:["我來打給技術人員。","是的，三份。","他在三樓工作。"]},
+{q:"Can you help me move these boxes?",o:["Sure, where do they go?","They're cardboard boxes.","I moved here last year."],a:0,ex:"請求 → Sure + 追問。",qz:"你可以幫我搬這些箱子嗎？",oz:["當然，要搬到哪裡？","它們是紙箱。","我去年搬來這裡。"]},
+{q:"How much does the membership cost?",o:["Many members.","Forty dollars a month.","It was very costly."],a:1,ex:"How much 問價格 → 金額。",qz:"會員費多少錢？",oz:["很多會員。","一個月四十美元。","那非常昂貴。"]},
+{q:"Which hotel are you staying at?",o:["For three nights.","The one near the station.","Yes, I am."],a:1,ex:"Which 問哪一個 → The one near the station。",qz:"你住在哪一家飯店？",oz:["住三晚。","車站附近那家。","是的，我是。"]},
+{q:"Have you finished the budget report?",o:["Not yet, I need one more day.","The budget is limited.","She reported it."],a:0,ex:"Have you…? → Not yet + 原因，是很常見的正解型態。",qz:"你完成預算報告了嗎？",oz:["還沒，我還需要一天。","預算有限。","她報告了。"]},
+{q:"Why don't we order lunch for the team?",o:["Because it's late.","That's a great idea.","At noon."],a:1,ex:"Why don't we… 是「提議」，不是問原因！→ That's a great idea。",qz:"我們何不幫團隊訂午餐？",oz:["因為太晚了。","好主意。","中午。"]},
+{q:"Isn't the store open on Sundays?",o:["Only in December.","I'd like to store it.","Open the window, please."],a:0,ex:"間接正解：只有十二月有開。store 是一字多義陷阱。",qz:"那家店星期日不是有開嗎？",oz:["只有十二月有開。","我想把它存放起來。","請打開窗戶。"]},
+{q:"Who should I give this application to?",o:["To the HR office.","I applied last year.","Yes, give it to me."],a:0,ex:"問交給誰 → To the HR office（部門也可代表人）。",qz:"這份申請書我該交給誰？",oz:["交給人資辦公室。","我去年申請過。","是的，給我。"]},
+{q:"What time does the shuttle bus leave?",o:["Every fifteen minutes.","At the main entrance.","It's a big bus."],a:0,ex:"問時間 → 每 15 分鐘一班，屬於合理回答。",qz:"接駁車幾點出發？",oz:["每十五分鐘一班。","在大門口。","那是一輛大巴士。"]},
+{q:"I'm going to the post office.",o:["Could you mail this for me?","It's posted online.","The office is closed for lunch."],a:0,ex:"直述句 → 順勢提出請託是合理回應。",qz:"我要去郵局。",oz:["你可以幫我寄這個嗎？","已經貼在網路上了。","辦公室午休時間不開。"]},
+{q:"Do you know where Mr. Ito's office is?",o:["He's on vacation this week.","He knows it well.","The office supplies."],a:0,ex:"間接回答：他這週休假（暗示不用找了）。多益很愛這種「答非所問但合理」的正解。",qz:"你知道伊藤先生的辦公室在哪裡嗎？",oz:["他這週在休假。","他很熟悉。","辦公用品。"]},
+{q:"Would you prefer a morning or afternoon appointment?",o:["Either is fine with me.","Yes, I would.","I made it yesterday."],a:0,ex:"選擇疑問句 → Either is fine 是常見正解。",qz:"您想要上午還是下午的預約？",oz:["我都可以。","是的，我想要。","我昨天預約了。"]}
+];
+
+const SETS_LISTEN = [
+{id:"L3a",part:3,title:"Part 3｜訂購辦公用品",lines:[
+{s:"W",text:"Hi Daniel, I'm placing an order for office supplies this afternoon. Do you need anything for your team?",z:"嗨 Daniel，我今天下午要訂辦公用品，你們團隊需要什麼嗎？"},
+{s:"M",text:"Actually, yes. We're running low on printer ink, and we need a few more notebooks for the training session next week.",z:"其實有。我們的印表機墨水快用完了，下週的訓練課程也還需要幾本筆記本。"},
+{s:"W",text:"Okay. The supplier offers a discount if we order before Thursday, so I'll add those right away.",z:"好。如果我們在星期四前訂，供應商有折扣，所以我馬上加進去。"},
+{s:"M",text:"Great, thanks. Could you send me a copy of the order confirmation?",z:"太好了，謝謝。你可以寄一份訂單確認給我嗎？"}],
+qs:[
+{q:"What is the woman doing this afternoon?",o:["Leading a training session","Placing an order","Repairing a printer","Meeting a supplier"],a:1,ex:"開頭：I'm placing an order for office supplies this afternoon.",qz:"女子今天下午要做什麼？",oz:["主持訓練課程","下訂單","修理印表機","和供應商見面"]},
+{q:"What will happen next week?",o:["A training session","A sale","A product launch","An inspection"],a:0,ex:"notebooks for the training session next week.",qz:"下週會發生什麼事？",oz:["訓練課程","特賣","產品發表","檢查"]},
+{q:"What does the man ask the woman to do?",o:["Call the supplier","Order more paper","Send him a confirmation","Change the delivery date"],a:2,ex:"Could you send me a copy of the order confirmation?",qz:"男子請女子做什麼？",oz:["打電話給供應商","多訂一些紙","寄確認信給他","更改送貨日期"]}]},
+{id:"L3b",part:3,title:"Part 3｜餐廳訂位",lines:[
+{s:"M",text:"Good evening, Riverside Grill. How can I help you?",z:"晚安，這裡是河畔燒烤餐廳，有什麼可以為您服務的嗎？"},
+{s:"W",text:"Hi, I'd like to book a table for eight people this Friday at seven. It's for a client dinner.",z:"你好，我想訂這星期五晚上七點、八個人的位子，是客戶聚餐。"},
+{s:"M",text:"I'm sorry, we're fully booked at seven. We do have a private room available at seven thirty, though.",z:"很抱歉，七點已經訂滿了。不過七點半有一間包廂。"},
+{s:"W",text:"A private room would actually be better for a business meeting. Let's do seven thirty.",z:"包廂其實更適合商務聚會。那就訂七點半吧。"}],
+qs:[
+{q:"Why is the woman calling?",o:["To cancel a reservation","To make a reservation","To complain about service","To order food for delivery"],a:1,ex:"I'd like to book a table…",qz:"女子為什麼打電話？",oz:["取消訂位","訂位","投訴服務","叫外送"]},
+{q:"What problem does the man mention?",o:["The restaurant is closed on Friday","The kitchen is being renovated","No tables are available at seven","The private room is too small"],a:2,ex:"we're fully booked at seven.",qz:"男子提到什麼問題？",oz:["餐廳星期五沒營業","廚房在整修","七點沒有空位","包廂太小"]},
+{q:"Why does the woman accept the offer?",o:["It is cheaper","It suits a business meeting","It is closer to her office","It includes free drinks"],a:1,ex:"A private room would actually be better for a business meeting.",qz:"女子為什麼接受這個提議？",oz:["比較便宜","適合商務聚會","離她辦公室比較近","有附免費飲料"]}]},
+{id:"L3c",part:3,title:"Part 3｜專案延期",lines:[
+{s:"W",text:"Kevin, have you heard from the design team about the new website?",z:"Kevin，設計團隊有跟你說新網站的進度嗎？"},
+{s:"M",text:"Yes, they just emailed me. They need another week because two of their designers are out sick.",z:"有，他們剛寄信給我。因為有兩位設計師生病請假，他們需要再一週。"},
+{s:"W",text:"Hmm, that might be a problem. We promised the client a preview by the fifteenth.",z:"嗯，這可能是個問題。我們答應客戶十五號前給他們看預覽。"},
+{s:"M",text:"I'll call the client this afternoon and explain. I think they'll understand if we show them a few sample pages first.",z:"我今天下午打給客戶解釋。如果我們先給他們看幾個範例頁面，我想他們會諒解的。"}],
+qs:[
+{q:"What are the speakers discussing?",o:["A hiring plan","A website project","A sales report","An office move"],a:1,ex:"the design team about the new website.",qz:"說話者在討論什麼？",oz:["徵才計畫","網站專案","銷售報告","辦公室搬遷"]},
+{q:"Why is the project delayed?",o:["The budget was cut","Some staff members are sick","The client changed the design","The software is broken"],a:1,ex:"two of their designers are out sick.",qz:"專案為什麼延遲？",oz:["預算被刪減","有些員工生病","客戶更改了設計","軟體壞了"]},
+{q:"What will the man do this afternoon?",o:["Contact the client","Hire more designers","Email the design team","Finish the sample pages"],a:0,ex:"I'll call the client this afternoon.",qz:"男子今天下午要做什麼？",oz:["聯絡客戶","雇用更多設計師","寄信給設計團隊","完成範例頁面"]}]},
+{id:"L3d",part:3,title:"Part 3｜飯店入住（三人對話）",lines:[
+{s:"W",text:"Hello, I have a reservation under the name Lin. I'm checking in for three nights.",z:"你好，我用林的名字訂了房，要入住三晚。"},
+{s:"M",text:"Welcome, Ms. Lin. I see your room is on the twelfth floor. Breakfast is served from six to ten in the lobby restaurant.",z:"歡迎，林小姐。您的房間在十二樓。早餐六點到十點在大廳餐廳供應。"},
+{s:"M2",text:"Excuse me, Ms. Lin, I'm the event coordinator. Your conference room is ready, and the projector has been set up as you requested.",z:"不好意思，林小姐，我是活動協調人員。您的會議室已經準備好了，投影機也依照您的要求架設好了。"},
+{s:"W",text:"Wonderful, thank you. Could someone bring two extra chairs to the room before nine tomorrow?",z:"太好了，謝謝。明天九點前可以請人多搬兩張椅子到會議室嗎？"}],
+qs:[
+{q:"Where most likely are the speakers?",o:["At an airport","At a hotel","At a restaurant","At a train station"],a:1,ex:"checking in、room、lobby → 飯店。",qz:"說話者最可能在哪裡？",oz:["機場","飯店","餐廳","火車站"]},
+{q:"What has already been prepared?",o:["A breakfast order","A projector","A taxi","Extra chairs"],a:1,ex:"the projector has been set up as you requested.",qz:"什麼東西已經準備好了？",oz:["早餐訂單","投影機","計程車","額外的椅子"]},
+{q:"What does the woman request?",o:["A late checkout","A different room","Additional chairs","A wake-up call"],a:2,ex:"Could someone bring two extra chairs…",qz:"女子提出什麼要求？",oz:["延後退房","換房間","多加椅子","晨喚服務"]}]},
+{id:"L4a",part:4,title:"Part 4｜機場廣播",lines:[
+{s:"N",text:"Attention passengers on Flight 208 to Singapore. Due to heavy rain, the departure has been delayed by approximately forty-five minutes. The new boarding time is eleven fifteen at Gate 12. Passengers who need to make connecting flights should speak with an agent at the service desk near Gate 10. We apologize for the inconvenience and thank you for your patience.",z:"搭乘 208 班機前往新加坡的旅客請注意。由於大雨，起飛時間延後約四十五分鐘。新的登機時間是十一點十五分，在 12 號登機門。需要轉機的旅客，請到 10 號登機門附近的服務台洽詢地勤人員。造成不便，敬請見諒，感謝您的耐心等候。"}],
+qs:[
+{q:"Why has the flight been delayed?",o:["Mechanical problems","Bad weather","A missing crew member","Heavy traffic"],a:1,ex:"Due to heavy rain → bad weather（換句話說是 Part 4 常見技巧）。",qz:"班機為什麼延誤？",oz:["機械故障","天氣不佳","有機組員還沒到","交通擁塞"]},
+{q:"What is the new boarding time?",o:["10:45","11:00","11:15","12:15"],a:2,ex:"The new boarding time is eleven fifteen.",qz:"新的登機時間是幾點？",oz:["10:45","11:00","11:15","12:15"]},
+{q:"What should passengers with connecting flights do?",o:["Go to Gate 12","Call the airline","Visit a service desk","Check the website"],a:2,ex:"speak with an agent at the service desk near Gate 10.",qz:"需要轉機的旅客應該怎麼做？",oz:["到 12 號登機門","打電話給航空公司","到服務台","查看網站"]}]},
+{id:"L4b",part:4,title:"Part 4｜公司內部語音留言",lines:[
+{s:"N",text:"Hi Jenny, this is Mark from the accounting department. I'm calling about the travel expense form you submitted last week. It looks like the hotel receipt is missing, so we can't process your reimbursement yet. Could you scan the receipt and email it to me by Wednesday? If we get it by then, the payment will be included in this month's paycheck. Thanks!",z:"嗨 Jenny，我是會計部的 Mark。我打來是關於你上週繳交的差旅費申請表。飯店收據好像沒附上，所以我們還沒辦法處理你的報銷。你可以在星期三前把收據掃描後寄給我嗎？如果那之前收到，款項就會跟這個月的薪水一起發。謝謝！"}],
+qs:[
+{q:"Who most likely is the speaker?",o:["A hotel clerk","An accountant","A travel agent","A sales manager"],a:1,ex:"Mark from the accounting department。",qz:"說話者最可能是誰？",oz:["飯店櫃台人員","會計人員","旅行社人員","業務經理"]},
+{q:"What problem does the speaker mention?",o:["A form was submitted late","A document is missing","A payment was too high","A trip was canceled"],a:1,ex:"the hotel receipt is missing。",qz:"說話者提到什麼問題？",oz:["表格太晚交","少了一份文件","付款金額太高","行程被取消"]},
+{q:"What is the listener asked to do?",o:["Fill out a new form","Call the hotel","Send a receipt","Visit the accounting office"],a:2,ex:"scan the receipt and email it to me。",qz:"聽者被要求做什麼？",oz:["填一份新表格","打電話給飯店","寄送收據","去會計辦公室"]}]}
+];
+
+const SETS_READ = [
+{id:"R6a",part:6,title:"Part 6｜員工公告",passage:`To: All Staff
+Subject: Parking Lot Repairs
+
+Starting Monday, May 6, the north parking lot will be closed for repairs. The work is ---(1)--- to take about two weeks. During this time, employees may park in the south lot or at the City Garage on Elm Street. ---(2)---, the company will cover the cost of parking at the garage. Please keep your parking ---(3)--- and submit them to the front desk at the end of each week. ---(4)---
+
+Thank you for your patience.
+Facilities Department`,
+pz:`收件人：全體員工
+主旨：停車場維修
+
+自 5 月 6 日星期一起，北側停車場將因維修而關閉。工程預計需要約兩週。這段期間，員工可以停在南側停車場或榆樹街上的市立停車場。此外，公司將負擔市立停車場的停車費。請保留你們的停車收據，並在每週結束時交到櫃台。費用將加到你們下一次的薪資中。
+
+感謝大家的耐心配合。
+總務部`,
+qs:[
+{q:"(1)",o:["expect","expected","expecting","expectation"],a:1,ex:"be expected to = 預計；工程是被預期 → 被動 is expected。",qz:"第 1 格",oz:["預期（原形）","被預期（過去分詞）","正在預期","預期（名詞）"]},
+{q:"(2)",o:["However","In addition","Otherwise","For example"],a:1,ex:"前一句給替代停車選擇，這句補充公司付停車費 → In addition。",qz:"第 2 格",oz:["然而","此外","否則","例如"]},
+{q:"(3)",o:["receipts","recipes","receivers","receptions"],a:0,ex:"保留停車「收據」並繳交 → receipts（易混字）。",qz:"第 3 格",oz:["收據","食譜","接收器","接待會"]},
+{q:"(4) 選出最適合放入的句子",o:["The north lot was built ten years ago.","Payments will be added to your next paycheck.","Our cafeteria will also be closed.","Please drive carefully in the rain."],a:1,ex:"前文要大家交收據 → 接著說明會隨薪資退費，邏輯最連貫。句子插入題要看「前後文的接續」。",qz:"第 4 格：選出最適合放入的句子",oz:["北側停車場是十年前蓋的。","費用將加到你們下一次的薪資中。","我們的員工餐廳也將關閉。","下雨時請小心駕駛。"]}]},
+{id:"R7a",part:7,title:"Part 7｜電子郵件",passage:`From: Laura Kim <lkim@brightpath.com>
+To: Customer Service <support@deskmate.com>
+Date: March 3
+Subject: Order #45821
+
+Hello,
+
+I ordered two DeskMate standing desks on February 20 for our new office. They arrived yesterday, but one of them has a damaged leg and cannot be adjusted. The other desk works perfectly.
+
+I would prefer a replacement rather than a refund, since our team moves into the office next Monday. Could you let me know whether a new desk can be delivered before then? I have attached photos of the damage.
+
+Best regards,
+Laura Kim
+Office Manager, BrightPath Consulting`,
+pz:`寄件人：Laura Kim
+收件人：客服部
+日期：3 月 3 日
+主旨：訂單編號 45821
+
+您好：
+
+我在 2 月 20 日為我們的新辦公室訂購了兩張 DeskMate 升降桌。桌子昨天送到了，但其中一張的桌腳損壞，無法調整高度。另一張則運作正常。
+
+比起退款，我比較希望換一張新的，因為我們團隊下週一就要搬進辦公室。可以請您告訴我，新桌子能否在那之前送達嗎？我已附上損壞處的照片。
+
+敬祝順心
+Laura Kim
+BrightPath 顧問公司 辦公室經理`,
+qs:[
+{q:"Why did Ms. Kim write the email?",o:["To order more desks","To report a damaged product","To cancel an order","To ask about prices"],a:1,ex:"one of them has a damaged leg → 回報瑕疵品。Part 7 第一題常問「寫信目的」，答案通常在第一段。",qz:"Kim 小姐為什麼寫這封信？",oz:["訂購更多桌子","回報損壞的商品","取消訂單","詢問價格"]},
+{q:"What does Ms. Kim want?",o:["A full refund","A discount","A new desk","A repair visit"],a:2,ex:"I would prefer a replacement rather than a refund.",qz:"Kim 小姐想要什麼？",oz:["全額退款","折扣","一張新桌子","到府維修"]},
+{q:"What is suggested about BrightPath Consulting?",o:["It is moving into a new office","It sells furniture","It has 20 employees","It ordered desks last year"],a:0,ex:"our team moves into the office next Monday → 公司即將搬入新辦公室。suggested/implied 題要找「換句話說」。",qz:"關於 BrightPath 顧問公司，文中暗示了什麼？",oz:["即將搬進新辦公室","販售家具","有二十名員工","去年訂過桌子"]},
+{q:"What was included with the email?",o:["A receipt","An invoice","Pictures","A contract"],a:2,ex:"I have attached photos → Pictures（同義替換）。",qz:"這封信附上了什麼？",oz:["收據","請款單","照片","合約"]}]},
+{id:"R7b",part:7,title:"Part 7｜廣告",passage:`GreenLeaf Fitness — Grand Opening!
+
+Our new downtown location at 120 Harbor Road opens on June 1.
+
+• Membership: $45 per month, or $480 for a full year (save $60!)
+• Sign up before June 15 and receive two free personal training sessions.
+• Classes: yoga, cycling, and strength training — over 40 classes every week.
+• Open 6 a.m. to 11 p.m. on weekdays, 8 a.m. to 8 p.m. on weekends.
+
+Current members of our Westside location can use the new downtown gym at no extra cost.
+
+Visit www.greenleaffit.com to see the class schedule.`,
+pz:`GreenLeaf 健身中心——盛大開幕！
+
+我們位於港口路 120 號的市中心新據點將於 6 月 1 日開幕。
+
+• 會費：每月 45 美元，或全年 480 美元（省下 60 美元！）
+• 6 月 15 日前加入，即贈送兩堂免費私人教練課。
+• 課程：瑜伽、飛輪和肌力訓練——每週超過 40 堂課。
+• 營業時間：平日早上 6 點到晚上 11 點，週末早上 8 點到晚上 8 點。
+
+西區分館的現有會員可免費使用市中心新館。
+
+請上 www.greenleaffit.com 查看課表。`,
+qs:[
+{q:"What is being advertised?",o:["A sports store","A fitness center","A training course for coaches","A health food shop"],a:1,ex:"GreenLeaf Fitness、membership、classes → 健身中心。",qz:"這則廣告在宣傳什麼？",oz:["運動用品店","健身中心","教練培訓課程","健康食品店"]},
+{q:"How can new members get free training sessions?",o:["By paying for a full year","By joining before a certain date","By attending a yoga class","By visiting the website"],a:1,ex:"Sign up before June 15 → 在特定日期前加入。",qz:"新會員要怎樣才能獲得免費教練課？",oz:["繳交全年會費","在特定日期前加入","參加瑜伽課","造訪網站"]},
+{q:"What is NOT mentioned about the gym?",o:["Its opening hours","Its class types","Its parking facilities","Its yearly price"],a:2,ex:"NOT 題要逐一刪去：營業時間、課程、年費都有提到，停車沒提。",qz:"關於這間健身房，下列哪一項沒有被提到？",oz:["營業時間","課程種類","停車設施","年費"]},
+{q:"What is indicated about the Westside location?",o:["It will close in June","Its members can use the new gym","It is open 24 hours","It offers cheaper memberships"],a:1,ex:"Current members of our Westside location can use the new downtown gym at no extra cost.",qz:"關於西區分館，文中提到了什麼？",oz:["將在六月關閉","會員可以使用新館","24 小時營業","會費比較便宜"]}]},
+{id:"R7c",part:7,title:"Part 7｜雙篇：公告＋電子郵件",passage:`【Notice】
+Harborview Library — Spring Workshop Series
+All workshops are free, but registration is required. Space is limited to 20 people per session.
+• April 4 (Thu) 7 p.m. — Résumé Writing
+• April 11 (Thu) 7 p.m. — Basic Excel Skills
+• April 18 (Thu) 7 p.m. — Public Speaking
+Register at the front desk or call 555-0142.
+
+【Email】
+To: events@harborviewlib.org
+From: Tom Huang
+Date: April 2
+
+Hello,
+I registered for the Excel workshop, but my company has asked me to travel that week. Would it be possible to switch to the public speaking session instead? I'm happy to bring my own laptop if needed.
+Thank you,
+Tom Huang`,
+pz:`【公告】
+港景圖書館——春季研習系列
+所有研習皆免費，但須事先報名。每場限額 20 人。
+• 4 月 4 日（四）晚上 7 點——履歷寫作
+• 4 月 11 日（四）晚上 7 點——Excel 基礎技巧
+• 4 月 18 日（四）晚上 7 點——公開演說
+請至櫃台報名或撥打 555-0142。
+
+【電子郵件】
+收件人：圖書館活動信箱
+寄件人：Tom Huang
+日期：4 月 2 日
+
+您好：
+我報名了 Excel 研習，但公司要我那一週出差。請問可以改成參加公開演說那一場嗎？如果需要，我很樂意自備筆電。
+謝謝您，
+Tom Huang`,
+qs:[
+{q:"What is stated about the workshops?",o:["They cost $20","They require registration","They are held on weekends","They are online"],a:1,ex:"registration is required。",qz:"關於這些研習，文中說明了什麼？",oz:["費用 20 美元","需要報名","在週末舉行","在線上舉行"]},
+{q:"When was Mr. Huang originally scheduled to attend a workshop?",o:["April 4","April 11","April 18","April 2"],a:1,ex:"雙篇整合題：信中說報名 Excel 課 → 對照公告 Excel 是 April 11。",qz:"Huang 先生原本預定參加哪一天的研習？",oz:["4 月 4 日","4 月 11 日","4 月 18 日","4 月 2 日"]},
+{q:"Why can't Mr. Huang attend the workshop?",o:["He is sick","He has a business trip","The workshop is full","He doesn't have a laptop"],a:1,ex:"my company has asked me to travel that week。",qz:"Huang 先生為什麼無法參加研習？",oz:["他生病了","他要出差","研習額滿了","他沒有筆電"]}]}
+];
+
+const PLAN = [
+{name:"階段一：打底期",weeks:[1,10],color:"#e3f2ef",desc:"最重要的是建立每天念書的習慣，進度其次。男友：補核心單字與基礎文法（詞性、時態、主被動），聽力先熟悉 Part 2 的問句類型。你：快速喚醒文法、累積進階單字，聽力每天少量但不中斷。這段跨過年底，忙的日子就開「好忙模式」。"},
+{name:"階段二：題型精熟",weeks:[11,20],color:"#fbeedd",desc:"依各大題練解題技巧：Part 2 陷阱、Part 3/4 先看題目、Part 5 快速解題、Part 6 句子插入、Part 7 找關鍵字。建立錯題本，每週日固定複習。第 12 週是農曆過年，只保留最低限度。第 15 週起開始做限時練習。"},
+{name:"階段三：實戰練習",weeks:[21,28],color:"#e8ecf7",desc:"每兩週做一回官方試題書的完整模擬考（2 小時不中斷、一定要計時），之後花同樣時間檢討錯題。網站的小測驗都改成限時。第 25 週前後完成 6/27 場次的報名。"},
+{name:"階段四：考前衝刺",weeks:[29,32],color:"#fbe7e3",desc:"每週一回完整模擬考，練時間分配（Part 5 每題約 20 秒、Part 7 留 55 分鐘）。只複習錯題本和高頻單字，不再學新東西。最後一週調整作息，配合考試當天的時段。"}
+];
+const WEEKS = [
+"適應期：每天 15 分鐘就好，先把習慣建立起來","詞性判斷＋Part 2 問句類型","時態＋Part 2 Wh- 問句","主被動＋Part 3 先看題目","主詞動詞一致＋數字、時間聽力","代名詞＋第一次自我小測驗","介系詞 vs 連接詞＋跨年週（量力而為）","關係代名詞＋Part 3 換句話說","分詞＋Part 4 廣播類型","比較級＋階段一總複習",
+"動名詞／不定詞＋Part 7 單篇","過年週：只做單字＋Part 2（好忙模式）","連接副詞＋Part 6 句子插入","條件句＋Part 7 雙篇","Part 5 限時練習開始（每題 30 秒）","Part 3/4 圖表題＋說話者意圖題","Part 7 三篇閱讀＋找關鍵字","Part 2 陷阱總整理","錯題本大整理＋弱點補強","題型總複習＋迷你模考",
+"第一回官方試題（了解目前程度）","檢討第一回＋弱點補強","第二回官方試題","Part 7 速度訓練（每篇限時）","第三回官方試題＋完成 6/27 報名","聽力換句話說＋Part 6 總複習","第四回官方試題","錯題本總整理",
+"每週完整模擬考＋時間分配","每週完整模擬考＋高頻單字","最後一回模擬考＋錯題本","考前週：調整作息、只複習不學新"
+];
+
+</script>
+<script id="main">
+(function(){
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const ds=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const TODAY=ds(new Date());
+const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return ds(d)};
+const diffDays=(a,b)=>Math.round((parse(b)-parse(a))/864e5);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+const VOCAB={};for(const k in VOCAB_RAW){VOCAB[k]=VOCAB_RAW[k].trim().split('\n').map(l=>{const [w,p,z,e,ez]=l.split('|');return {w,p,z,e,ez}})}
+const QBANK={};GRAMMAR.forEach((u,ui)=>u.qs.forEach((q,qi)=>QBANK['g'+ui+'_'+qi]={...q,src:'文法｜'+u.t}));
+PART2.forEach((q,i)=>QBANK['p2_'+i]={...q,p2:true,src:'Part 2'});
+
+function blankUser(name,track,target){return {name,track,target,log:{},vocab:{},wrong:[],scores:{},updatedAt:0}}
+const DEF={v:1,startDate:null,examDate:null,settingsAt:0,users:{a:blankUser('我','adv',850),b:blankUser('男友','base',650)}};
+let EMB={};try{EMB=JSON.parse(document.getElementById('state').textContent||'{}')}catch(e){}
+function fill(s){const o=JSON.parse(JSON.stringify(DEF));if(!s)return o;['startDate','examDate','settingsAt'].forEach(k=>{if(s[k]!=null)o[k]=s[k]});if(s.users)for(const u of ['a','b'])if(s.users[u])o.users[u]=Object.assign(o.users[u],s.users[u]);return o}
+const EMBF=fill(EMB);
+let S=fill(EMB);
+const LOCAL=LS.get('toeic6m_state');
+if(LOCAL){const L=fill(LOCAL);for(const u of ['a','b'])if((L.users[u].updatedAt||0)>(S.users[u].updatedAt||0))S.users[u]=L.users[u];if((L.settingsAt||0)>(S.settingsAt||0)){S.startDate=L.startDate;S.examDate=L.examDate;S.settingsAt=L.settingsAt}}
+let ME=LS.get('toeic6m_me');
+let VIEW=(location.hash||'#today').slice(1);
+let RATE=LS.get('toeic6m_rate')||1;
+let ART=null,TTS=null,SYNCING=false;
+let HOSTED=!!(window.claude&&typeof window.claude.use==='function');
+
+function U(){return S.users[ME]}
+function other(){return ME==='a'?'b':'a'}
+function save(touchSettings){if(ME)U().updatedAt=Date.now();if(touchSettings)S.settingsAt=Date.now();LS.set('toeic6m_state',S);renderSync()}
+function dirty(){for(const u of ['a','b'])if((S.users[u].updatedAt||0)>(EMBF.users[u].updatedAt||0))return true;return (S.settingsAt||0)>(EMBF.settingsAt||0)}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
+
+// ---------- plan math ----------
+function start(){return S.startDate||TODAY}
+function weekOf(d){return Math.max(1,Math.min(WEEKS.length,Math.floor(diffDays(start(),d)/7)+1))}
+function phaseOf(w){return PLAN.find(p=>w>=p.weeks[0]&&w<=p.weeks[1])}
+const UNIT_BY_WEEK=[0,0,1,2,3,4,5,6,7,8,9,9,10,11];
+function unitOf(w){return w<=UNIT_BY_WEEK.length?UNIT_BY_WEEK[w-1]:(w-1)%GRAMMAR.length}
+function logOf(u,d){const L=S.users[u].log;return L[d]||(L[d]={done:[],busy:false})}
+function peekLog(u,d){return S.users[u].log[d]||{done:[],busy:false}}
+function tasksFor(u,d){
+  const usr=S.users[u],w=weekOf(d),dow=parse(d).getDay(),busy=peekLog(u,d).busy,base=usr.track==='base';
+  const n=busy?(base?5:8):(base?10:15);const t=[];
+  t.push({id:'vocab',t:`單字卡：${n} 個新字＋到期複習`,go:'vocab',min:busy?5:15});
+  if(busy){t.push({id:'listen',t:'聽力 Part 2：5 題',go:'listen',min:5});return t}
+  if([1,3,5].includes(dow))t.push({id:'grammar',t:`文法 Unit ${unitOf(w)+1}：${GRAMMAR[unitOf(w)].t}`,go:'grammar',min:15});
+  if([2,4].includes(dow))t.push({id:'listen',t:'聽力：Part 2 五題＋Part 3/4 一組',go:'listen',min:20});
+  if(dow===6)t.push({id:'read',t:'閱讀：Part 6/7 一篇',go:'read',min:20});
+  if(dow===0){t.push({id:'wrong',t:'錯題本複習',go:'wrong',min:10});if(w>=11)t.push({id:'mock',t:'迷你模考（限時 Part 5）',go:'mock',min:10})}
+  if(w>=21&&w<=28&&dow===6&&w%2===1)t.push({id:'full',t:'官方試題書：完整一回（2 小時，做完再勾）',min:120,manual:true});
+  if(w>=29&&dow===6)t.push({id:'full',t:'官方試題書：完整模擬考一回（做完再勾）',min:120,manual:true});
+  return t;
+}
+function markDone(id){if(!ME)return;const L=logOf(ME,TODAY);if(!L.done.includes(id)){L.done.push(id);save();const ts=tasksFor(ME,TODAY);if(ts.every(t=>L.done.includes(t.id)))toast('🎉 今天的任務全部完成！記得同步讓對方看到')}}
+function didDay(u,d){return peekLog(u,d).done.length>0}
+function streak(u){let d=TODAY,n=0;if(!didDay(u,d))d=addDays(d,-1);while(didDay(u,d)){n++;d=addDays(d,-1)}return n}
+function totalDays(u){return Object.values(S.users[u].log).filter(l=>l.done&&l.done.length).length}
+
+// ---------- speech ----------
+const VOICES={W:'airy',M:'rounded',M2:'glassy',N:'buttery',Q:'rounded',R:'airy'};
+function fallbackSpeak(lines){return new Promise(res=>{const ss=window.speechSynthesis;if(!ss){toast('這個瀏覽器不支援語音');res();return}ss.cancel();const vs=ss.getVoices().filter(v=>/^en/i.test(v.lang));const idx={airy:0,rounded:1,glassy:2,buttery:3};lines.forEach((l,i)=>{const u=new SpeechSynthesisUtterance(l.text);u.lang='en-US';u.rate=RATE;if(vs.length)u.voice=vs[(idx[l.voice]||0)%vs.length];if(i===lines.length-1){u.onend=res;u.onerror=res}ss.speak(u)})})}
+async function say(lines){lines=lines.map(l=>typeof l==='string'?{text:l,voice:'buttery'}:l);
+  if(TTS){try{await TTS.speak(lines.map(l=>({text:l.text,voice:l.voice,language:'en',rate:RATE})));return}catch(e){if(!(e&&e.code==='not_granted'))return}}
+  await fallbackSpeak(lines)}
+function stopSpeak(){try{TTS&&TTS.stop()}catch(e){}try{window.speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+function speedCtl(){return `<div class="speed">${[0.8,1,1.15].map(r=>`<button class="${RATE===r?'on':''}" data-rate="${r}">${r===0.8?'慢速':r===1?'正常':'快一點'}</button>`).join('')}</div>`}
+
+// ---------- sync ----------
+function buildDoc(){
+  const css=document.getElementById('css').textContent,data=document.getElementById('data').textContent,main=document.getElementById('main').textContent;
+  const json=JSON.stringify(S).replace(/</g,'\\u003c');const E='</'+'script>';
+  return '<!DOCTYPE html>\n<html lang="zh-Hant"><head><meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>多益半年衝刺 · 雙人學習站</title>\n<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">'+css+'</style>\n<script id="state" type="application/json">'+json+E+'\n</head><body><div id="app"></div>\n<script id="data">'+data+E+'\n<script id="main">'+main+E+'\n</body></html>';
+}
+async function sync(){
+  if(!ART){openModal(`<h2>目前無法同步</h2><p class="muted">同步需要在 claude.ai 上開啟這個頁面，並具有編輯權限。進度已經存在這台裝置的瀏覽器裡，不會遺失。</p><p class="muted">若男友無法同步：請在頁面右上角「分享」中給他編輯權限；若他不在你的組織內無法加入，就各自在自己的裝置上使用，打卡板只會顯示各自的紀錄。</p><div class="row" style="justify-content:flex-end"><button class="btn" data-close>知道了</button></div>`);return}
+  if(SYNCING)return;SYNCING=true;renderSync();
+  try{sessionStorage.setItem('toeic6m_view',VIEW)}catch(e){}
+  try{await ART.publish(buildDoc())}catch(e){SYNCING=false;const c=e&&e.code;
+    if(c==='conflict'){toast('對方剛好也在同步，頁面會重新載入，再按一次同步即可')}
+    else if(c==='not_writer'||c==='not_granted'){toast('你只有檢視權限，進度只存在這台裝置')}
+    else toast('同步失敗，稍後再試');renderSync()}
+}
+const TASKL={vocab:'v',grammar:'g',listen:'l',read:'r',wrong:'w',mock:'m',full:'f'};
+function exportCode(){const x=S.users[ME];const log={};for(const d in x.log){const dn=(x.log[d].done||[]).map(i=>TASKL[i]||'').join('');if(dn)log[d]=dn}
+  const obj={k:'toeic1',u:ME,n:x.name,t:x.track,g:x.target,at:x.updatedAt||Date.now(),log,st:S.startDate,ex:S.examDate,sa:S.settingsAt||0};
+  const code='TOEIC:'+btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+  const show=()=>openModal(`<h2>我的進度碼</h2><p class="muted">全選後複製，傳給對方。</p><textarea rows="6" style="width:100%;font:12px monospace" readonly onclick="this.select()">${esc(code)}</textarea><div class="row" style="justify-content:flex-end;margin-top:8px"><button class="btn" data-close>完成</button></div>`);
+  try{navigator.clipboard.writeText(code).then(()=>toast('已複製，貼到 LINE 傳給對方吧'),show)}catch(e){show()}}
+function importCode(){openModal(`<h2>貼上對方的進度碼</h2><textarea id="pcode" rows="6" style="width:100%;font:12px monospace" placeholder="TOEIC:..."></textarea><div class="row" style="justify-content:flex-end;margin-top:8px"><button class="btn ghost" data-close>取消</button><button class="btn" data-act="applyCode">更新打卡板</button></div>`)}
+function applyCode(){const raw=($('#pcode').value||'').trim().replace(/^TOEIC:/,'');let o;
+  try{o=JSON.parse(decodeURIComponent(escape(atob(raw))))}catch(e){return toast('進度碼格式不對，請整段複製')}
+  if(!o||o.k!=='toeic1'||!S.users[o.u])return toast('進度碼格式不對');
+  if(o.u===ME)return toast('這是你自己的進度碼喔');
+  const x=S.users[o.u];if((o.at||0)<(x.updatedAt||0)){closeModal();return toast('這份進度碼比目前的還舊，沒有更新')}
+  const inv={};for(const k in TASKL)inv[TASKL[k]]=k;const log={};
+  for(const d in o.log)log[d]={done:o.log[d].split('').map(c=>inv[c]).filter(Boolean),busy:false};
+  Object.assign(x,{name:o.n||x.name,track:o.t||x.track,target:o.g||x.target,log,updatedAt:o.at});
+  if((o.sa||0)>(S.settingsAt||0)){S.startDate=o.st;S.examDate=o.ex;S.settingsAt=o.sa}
+  LS.set('toeic6m_state',S);closeModal();render();toast('已更新 '+x.name+' 的進度')}
+function renderSync(){let el=$('#syncbar');const need=HOSTED&&ME&&dirty();
+  if(!need){el&&el.remove();return}
+  if(!el){el=document.createElement('div');el.id='syncbar';el.className='syncbar';document.body.appendChild(el)}
+  el.innerHTML=`<span>${SYNCING?'同步中…':'有新進度還沒同步給對方'}</span><button class="btn sm" data-act="sync" ${SYNCING?'disabled':''}>同步打卡</button>`}
+
+// ---------- modal ----------
+function openModal(html){closeModal();const m=document.createElement('div');m.className='modal';m.id='modal';m.innerHTML=`<div class="card">${html}</div>`;m.addEventListener('click',e=>{if(e.target===m||e.target.closest('[data-close]'))closeModal()});document.body.appendChild(m)}
+function closeModal(){const m=$('#modal');m&&m.remove()}
+function pickWho(){openModal(`<h2>你是哪一位？</h2><p class="muted">這台裝置會記住你的選擇，之後可以在右上角切換。</p><div class="grid2"><button class="btn a" data-pick="a">${esc(S.users.a.name)}</button><button class="btn b" data-pick="b">${esc(S.users.b.name)}</button></div><p class="muted" style="margin-top:12px">第一次使用？先到「⚙︎ 設定」改名字、開始日與考試日。</p>`)}
+function newPerDay(u){const x=S.users[u];return x.dailyNew||(x.track==='base'?10:15)}
+function userFields(k,x){return `<h3 style="margin-top:16px"><span class="pill ${k}">${k.toUpperCase()}</span></h3>
+<label class="f">名字</label><input id="s_${k}n" value="${esc(x.name)}">
+<label class="f">程度路線</label><select id="s_${k}t"><option value="adv" ${x.track==='adv'?'selected':''}>進階（有基礎，目標 800+）</option><option value="base" ${x.track==='base'?'selected':''}>基礎（從核心單字與文法開始）</option></select>
+<div class="grid2" style="gap:10px"><div><label class="f">目標分數</label><input type="number" id="s_${k}g" value="${x.target}"></div>
+<div><label class="f">每天新單字數</label><input type="number" min="3" max="40" id="s_${k}d" value="${newPerDay(k)}"></div></div>`}
+function settings(){openModal(`<h2>設定</h2>
+<label class="f">開始日（第 1 週的第一天）</label><input type="date" id="s_start" value="${S.startDate||TODAY}">
+<label class="f">考試日</label><input type="date" id="s_exam" value="${S.examDate||''}">
+${userFields('a',S.users.a)}${userFields('b',S.users.b)}
+<p class="muted">好忙模式下新單字數會自動減半。</p>
+<div class="row" style="justify-content:flex-end;margin-top:16px"><button class="btn ghost" data-close>取消</button><button class="btn" data-act="saveSettings">儲存</button></div>`)}
+function saveSettings(){S.startDate=$('#s_start').value||TODAY;S.examDate=$('#s_exam').value||null;
+  for(const k of ['a','b']){const x=S.users[k];const d=Math.max(3,Math.min(40,+$('#s_'+k+'d').value||newPerDay(k)));
+    const nv={name:$('#s_'+k+'n').value.trim()||x.name,track:$('#s_'+k+'t').value,target:+$('#s_'+k+'g').value||x.target,dailyNew:d};
+    if(nv.name!==x.name||nv.track!==x.track||nv.target!==x.target||nv.dailyNew!==newPerDay(k)){Object.assign(x,nv);x.updatedAt=Date.now()}}
+  save(true);closeModal();render()}
+
+// ---------- views ----------
+const NAV=[['today','今日'],['plan','備考計畫'],['vocab','單字'],['grammar','文法 Part 5'],['listen','聽力'],['read','閱讀 Part 6/7'],['mock','迷你模考'],['wrong','錯題本']];
+function render(){
+  if(!NAV.find(n=>n[0]===VIEW))VIEW='today';
+  const app=$('#app');
+  app.innerHTML=`<div class="wrap"><header><h1>多益衝刺</h1><span class="pill">${S.startDate?'第 '+weekOf(TODAY)+' / '+WEEKS.length+' 週':'尚未設定開始日'}</span><div class="sp"></div>
+  <div class="who">${['a','b'].map(u=>`<button class="${u} ${ME===u?'on':''}" data-who="${u}">${esc(S.users[u].name)}</button>`).join('')}</div>
+  <button class="iconbtn" data-act="settings" title="設定">⚙︎</button></header>
+  <nav>${NAV.map(([k,v])=>`<a href="#${k}" class="${VIEW===k?'on':''}">${v}</a>`).join('')}</nav><main id="view"></main></div>`;
+  ({today:vToday,plan:vPlan,vocab:vVocab,grammar:vGrammar,listen:vListen,read:vRead,mock:vMock,wrong:vWrong})[VIEW]();
+  renderSync();
+}
+function V(h){$('#view').innerHTML=h}
+
+function weekDots(u){const t=parse(TODAY);const mon=addDays(TODAY,-((t.getDay()+6)%7));return `<div class="dots">${['一','二','三','四','五','六','日'].map((n,i)=>{const d=addDays(mon,i);return `<div class="dot ${didDay(u,d)?u:''} ${d===TODAY?'today':''}" title="${d}">${n}</div>`}).join('')}</div>`}
+function vToday(){
+  if(!ME){V('<div class="card">請先選擇你是誰。</div>');return}
+  const u=U(),w=weekOf(TODAY),ph=phaseOf(w),L=peekLog(ME,TODAY),ts=tasksFor(ME,TODAY);
+  const doneN=ts.filter(t=>L.done.includes(t.id)).length;const mins=ts.reduce((a,t)=>a+t.min,0);
+  const cd=S.examDate?diffDays(TODAY,S.examDate):null;
+  const o=other(),ou=S.users[o];
+  let nudge='';
+  if(!didDay(o,TODAY)&&didDay(ME,TODAY))nudge=`${esc(ou.name)} 今天還沒打卡，提醒一下？`;
+  else if(!didDay(ME,TODAY)&&!didDay(ME,addDays(TODAY,-1))&&totalDays(ME)>0)nudge='昨天斷了一天沒關係，規則是「不連續斷兩天」——今天開「好忙模式」做 10 分鐘就好。';
+  V(`${!S.startDate?`<div class="card" style="border-color:var(--ink)"><h2>先設定開始日</h2><p class="muted">設定開始日和名字之後，每天的任務會依照計畫自動排好。</p><button class="btn" data-act="settings">開始設定</button></div>`:''}
+  <div class="card hero">
+    <div class="stat"><div class="big">${cd!=null?(cd>=0?cd:'—'):'—'}</div><div class="muted">${cd!=null?'天後考試':'考試日未設定'}</div></div>
+    <div class="stat"><div class="big">${streak(ME)}</div><div class="muted">連續天數 🔥</div></div>
+    <div class="stat"><div class="big">${Object.values(u.vocab).filter(v=>v.box>=3).length}</div><div class="muted">已熟記單字</div></div>
+    <div style="flex:1;min-width:200px"><div class="muted">第 ${w} 週｜${ph.name}</div><div style="font-weight:600">${WEEKS[w-1]}</div></div>
+  </div>
+  <div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">今天的任務 <span class="muted" style="font-weight:400">約 ${mins} 分鐘・完成 ${doneN}/${ts.length}</span></h2>
+    <button class="btn sm ${L.busy?'':'ghost'}" data-act="busy">${L.busy?'✓ 好忙模式中':'今天好忙 → 只做最低限度'}</button></div>
+    <div style="margin-top:8px">${ts.map(t=>{const d=L.done.includes(t.id);return `<div class="task"><button class="chk ${d?'on':''}" data-toggle="${t.id}">${d?'✓':''}</button><div class="t ${d?'done':''}">${esc(t.t)} <span class="muted">· ${t.min} 分</span></div>${t.go?`<a class="btn sm ${d?'ghost':''}" href="#${t.go}" style="text-decoration:none">${d?'再練':'開始'}</a>`:''}</div>`}).join('')}</div>
+    <p class="muted" style="margin:10px 0 0">做完練習會自動打勾。好忙模式只保留最小量，重點是「每天都有碰英文」。</p>
+  </div>
+  <div class="card"><h2>雙人打卡板</h2>${nudge?`<div class="note">${nudge}</div>`:''}
+    <div class="grid2">${['a','b'].map(x=>{const xs=S.users[x],xl=peekLog(x,TODAY),xt=tasksFor(x,TODAY);return `<div class="card partner ${x}" style="margin:0"><div class="row" style="justify-content:space-between"><b>${esc(xs.name)}${x===ME?'（你）':''}</b><span class="pill ${x}">目標 ${xs.target}</span></div>
+      <div class="row" style="margin:8px 0;gap:18px"><div><span class="big" style="font-size:24px">${streak(x)}</span> <span class="muted">連續天</span></div><div><span class="big" style="font-size:24px">${totalDays(x)}</span> <span class="muted">總天數</span></div><div><span class="big" style="font-size:24px">${xl.done.filter(id=>xt.some(t=>t.id===id)).length}/${xt.length}</span> <span class="muted">今日</span></div></div>
+      ${weekDots(x)}</div>`}).join('')}</div>
+    ${HOSTED?`<p class="muted" style="margin:10px 0 0">打卡板顯示的是最後一次「同步打卡」的內容。做完今天的任務按下方的同步按鈕，對方就看得到。</p>`:
+    `<p class="muted" style="margin:10px 0 0">各自用自己的手機時，進度存在各自的瀏覽器裡。做完今天的任務，把「我的進度碼」傳給對方（例如用 LINE），對方貼上後打卡板就會更新。</p>
+    <div class="row" style="margin-top:8px"><button class="btn sm" data-act="exportCode">複製我的進度碼</button><button class="btn sm ghost" data-act="importCode">貼上對方的進度碼</button></div>`}
+  </div>`);
+}
+
+function vPlan(){
+  const w=weekOf(TODAY),N=WEEKS.length;
+  V(`<div class="card"><h2>${N} 週總覽（${S.startDate?S.startDate.slice(5).replace('-','/'):'—'} → ${S.examDate?S.examDate.slice(5).replace('-','/'):'—'} 考試）</h2>
+  <p class="muted">每天 30–45 分鐘、一週 6–7 天。忙的日子開「好忙模式」只做 10 分鐘，<b>原則是不連續斷兩天</b>。</p>
+  ${PLAN.map(p=>`<div class="phase" style="background:${p.color}"><b>${p.name}</b> <span class="muted">第 ${p.weeks[0]}–${p.weeks[1]} 週${S.startDate?`（${addDays(start(),(p.weeks[0]-1)*7).slice(5).replace('-','/')} 起）`:''}</span><div style="font-size:14px;margin-top:4px">${p.desc}</div></div>`).join('')}
+  </div>
+  <div class="card"><h2>每週重點</h2><table><tr><th>週</th><th>重點</th><th>文法單元</th></tr>
+  ${WEEKS.map((t,i)=>`<tr class="${S.startDate&&i+1===w?'now':''}"><td>${i+1}</td><td>${esc(t)}${S.startDate?`<div class="muted">${addDays(start(),i*7).slice(5).replace('-','/')} 起</div>`:''}</td><td class="muted">${i<14?'Unit '+(unitOf(i+1)+1):'複習＋錯題'}</td></tr>`).join('')}</table></div>
+  <div class="card"><h2>一週的固定節奏</h2><table>
+  <tr><th>星期</th><th>內容</th></tr>
+  <tr><td>每天</td><td>單字卡（新字＋到期複習）；通勤時可開「通勤連播」聽英文</td></tr>
+  <tr><td>一、三、五</td><td>文法單元（Part 5 題型）</td></tr>
+  <tr><td>二、四</td><td>聽力 Part 2 ＋ Part 3/4</td></tr>
+  <tr><td>六</td><td>閱讀 Part 6/7；第 21–28 週隔週、第 29 週起每週加做官方試題一回</td></tr>
+  <tr><td>日</td><td>錯題本複習；第 11 週起加做限時迷你模考</td></tr></table></div>
+  <div class="card"><h2>這份計畫參考了哪些備考經驗</h2>
+  <p class="muted">以下是台灣考生分享和補教老師建議中反覆出現的做法，以及網站對應的設計：</p>
+  <table>
+  <tr><th style="width:42%">常見的備考經驗</th><th>網站怎麼做</th></tr>
+  <tr><td>程度弱的人先花約一個月打底單字和文法，之後才大量寫題</td><td>階段一（10 週）以單字、文法、Part 2 為主，男友的路線不急著寫長文章</td></tr>
+  <tr><td>寫模擬題一定要計時，不然考試時會寫不完、聽力跟不上</td><td>第 11 週起每週日限時迷你模考；官方試題一律 2 小時不中斷</td></tr>
+  <tr><td>每回模擬題都要認真檢討，找出常錯題型和不會的字</td><td>答錯自動進錯題本、每週日複習；不會的字可以匯入單字庫</td></tr>
+  <tr><td>單字量是初期最關鍵的，搭配單字書「新背一章＋複習前面」</td><td>內建約 940 個高頻字＋間隔重複複習，並可匯入單字書的字</td></tr>
+  <tr><td>官方試題書難度最接近正式考試</td><td>實戰期（第 21 週起）指定使用 ETS 官方試題書</td></tr>
+  <tr><td>利用通勤、零碎時間循環聽英文，讓耳朵習慣</td><td>聽力頁的「通勤連播」</td></tr>
+  <tr><td>800 分以上的瓶頸常是閱讀寫不完</td><td>進階路線加重 Part 7 速度訓練與限時練習</td></tr>
+  </table>
+  <p class="muted" style="margin-top:10px">需要誠實說明：分享文中提到的進步速度（例如 4 個月 350→700 分）多半建立在<b>每天念好幾個小時</b>的基礎上。你們每天 30–45 分鐘，所以計畫拉到 32 週，目標也設在比較實際的範圍。</p></div>
+  <div class="card"><h2>題目來源與教材</h2>
+  <p>ETS 不公開歷屆多益考題，市面上也沒有合法的「歷年考古題」全集。這個網站的題目全部是<b>依照多益真實題型與出題邏輯原創</b>的練習題，適合打底和練技巧。</p>
+  <p><b>第 21 週起</b>請搭配 <b>ETS 官方出版的多益試題書</b>（台灣由忠欣出版，例如「多益官方全真試題指南」系列），每本有數回完整試題與音檔，難度最接近正式考試。</p>
+  <p><b>單字書</b>：內建單字是高頻核心字。想再加強可以搭配一本多益單字書（例如 ETS 官方的核心單字書，約 1,500 字），把不會的字貼進「單字」頁匯入。</p>
+  <h3>報名提醒（6/27 場次）</h3><p class="muted">以 2026 年為例，6 月場大約在 5 月初開放一般報名、6 月中截止。2027 年的場次與報名日期請以 <a href="https://www.toeic.com.tw" target="_blank" rel="noopener">多益台灣官網 toeic.com.tw</a> 公告為準；建議第 25 週（5 月上旬）前後就報名，兩人報同一場，也比較不會臨時想逃避。</p></div>
+  <div class="card"><h2>兩人的策略差異</h2><div class="grid2">
+  <div class="phase" style="background:var(--a-soft);margin:0"><b>有基礎（曾考 735）</b><div style="font-size:14px">目標 850+。之前的分數是靠補習班短期衝上來的，前 2–3 週先確認還記得哪些。重點放在：進階單字、Part 7 閱讀速度、Part 3/4 的換句話說。</div></div>
+  <div class="phase" style="background:var(--b-soft);margin:0"><b>零基礎起步</b><div style="font-size:14px">目標 600–650。前 10 週只專心三件事：核心單字、詞性判斷、時態與主被動。聽力先拿 Part 2 的分數，閱讀先求 Part 5 穩定。所有例句和題目都附中文，看不懂時先對照中譯，不用硬猜。</div></div>
+  </div></div>`);
+}
+
+// vocab
+let VS=null;
+const INT=[0,1,2,4,8,16,30];
+function customDeck(u){return (S.users[u].custom||[]).map(c=>({w:c.w,p:c.p||'',z:c.z,e:c.e||'',ez:c.ez||'',custom:true}))}
+function deckOrder(u){const t=S.users[u].track;return customDeck(u).concat(t==='base'?VOCAB.base.concat(VOCAB.adv):VOCAB.adv.concat(VOCAB.base))}
+function cardByWord(u,w){return deckOrder(u).find(c=>c.w===w)}
+function startVocab(){const u=U(),busy=peekLog(ME,TODAY).busy;const all=deckOrder(ME);
+  const due=all.filter(c=>u.vocab[c.w]&&u.vocab[c.w].due<=TODAY);
+  const n=busy?Math.ceil(newPerDay(ME)/2):newPerDay(ME);
+  const fresh=all.filter(c=>!u.vocab[c.w]).slice(0,n);
+  VS={q:shuffle(due).slice(0,50).concat(fresh),i:0,flip:false,n:0,again:new Set()};vVocab()}
+function rateCard(r){const c=VS.q[VS.i],u=U();const cur=u.vocab[c.w]||{box:0};
+  let box=r===0?0:r===1?Math.max(1,cur.box):Math.min(6,cur.box+1);
+  u.vocab[c.w]={box,due:addDays(TODAY,r===0?0:INT[box]||1)};
+  if(r===0&&!VS.again.has(c.w)){VS.q.push(c);VS.again.add(c.w)}
+  VS.i++;VS.flip=false;VS.n++;save();
+  if(VS.i>=VS.q.length){markDone('vocab')}vVocab()}
+function deckStats(u,deck){const v=S.users[u].vocab;return {total:deck.length,seen:deck.filter(c=>v[c.w]).length,known:deck.filter(c=>v[c.w]&&v[c.w].box>=3).length}}
+let VLIST='';
+function vVocab(){
+  if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  const u=U(),all=deckOrder(ME);const due=all.filter(c=>u.vocab[c.w]&&u.vocab[c.w].due<=TODAY).length;
+  const decks=[['base','核心單字（約 600 分）',VOCAB.base],['adv','進階單字（800 分以上）',VOCAB.adv]];if((u.custom||[]).length)decks.unshift(['custom','我匯入的單字',customDeck(ME)]);
+  const totalKnown=all.filter(c=>u.vocab[c.w]&&u.vocab[c.w].box>=3).length;
+  const head=`<div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">單字</h2><span class="muted">每天 ${newPerDay(ME)} 個新字・今日到期複習 ${due}・已熟記 ${totalKnown}</span></div>
+  ${decks.map(([k,n,d])=>{const st=deckStats(ME,d);return `<div style="margin-top:10px"><div class="row" style="justify-content:space-between"><span>${n}</span><span class="muted">學過 ${st.seen} / ${st.total}・熟記 ${st.known}</span></div><div class="bar"><i style="width:${st.total?st.known/st.total*100:0}%"></i></div></div>`}).join('')}
+  <p class="muted" style="margin:10px 0 0">${u.track==='base'?'基礎路線：先背完核心單字，再自動接進階單字。':'進階路線：先背進階單字，接著用核心單字快速複習（會的直接按「記得」）。'}匯入的單字會最優先出現。</p></div>`;
+  if(!VS||VS.i>=VS.q.length){
+    const fin=VS&&VS.i>=VS.q.length&&VS.n>0;
+    V(head+`<div class="card" style="text-align:center">${fin?`<h2>這輪完成 ✓</h2><p class="muted">複習了 ${VS.n} 張。忘記的字會在明天之後再出現。</p>`:`<h2>今日單字</h2><p class="muted">間隔重複：記得越熟，下次出現的間隔越長（1→2→4→8→16→30 天）。<br>翻面後會看到中文、例句和例句翻譯，建議把例句唸出來。</p>`}
+    <button class="btn" data-act="startVocab">${fin?'再來一輪（加碼新字）':'開始'}</button></div>`+importCard()+listCard(decks));return}
+  const c=VS.q[VS.i];
+  V(head+`<div class="card"><div class="row" style="justify-content:space-between"><span class="muted">${VS.i+1} / ${VS.q.length}${u.vocab[c.w]?'・複習':'・新字'}</span><div class="row"><button class="btn sm ghost" data-say="${esc(c.w)}">🔊 單字</button>${c.e?`<button class="btn sm ghost" data-say="${esc(c.e)}">🔊 例句</button>`:''}</div></div>
+  <div class="flash" data-act="flip" style="margin-top:10px"><div class="w">${esc(c.w)}</div><div class="pos">${esc(c.p)}</div>
+  ${VS.flip?`<div class="zh">${esc(c.z)}</div>${c.e?`<div class="ex">${esc(c.e)}</div>`:''}${c.ez?`<div class="exz">${esc(c.ez)}</div>`:''}`:'<div class="muted" style="margin-top:14px">先在心裡想中文意思，再點卡片翻面</div>'}</div>
+  ${VS.flip?`<div class="rate"><button class="r0" data-rate-card="0">忘了</button><button class="r1" data-rate-card="1">有點印象</button><button class="r2" data-rate-card="2">記得</button></div>`:''}</div>`);
+}
+function importCard(){return `<div class="card"><h2>匯入單字書的單字</h2><p class="muted">網站內建約 940 個多益高頻字，是打底用的核心字。要衝高分，建議搭配一本多益單字書，把書上「不會的字」貼進來，就能用同樣的間隔重複方式複習。</p>
+  <p class="muted">每行一個字，用 <b>|</b> 或 Tab 分隔：<code>英文|中文</code>，也可以加例句：<code>英文|中文|例句|例句中譯</code></p>
+  <textarea id="imp" rows="5" style="width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:9px" placeholder="reimbursement|報銷&#10;itinerary|行程表|Your itinerary is attached.|附件是你的行程表。"></textarea>
+  <div class="row" style="justify-content:space-between;margin-top:8px"><span class="muted">目前已匯入 ${(U().custom||[]).length} 字</span><button class="btn sm" data-act="importWords">匯入</button></div></div>`}
+function importWords(){const raw=($('#imp').value||'').trim();if(!raw)return toast('請先貼上單字');const u=U();u.custom=u.custom||[];
+  const have=new Set(deckOrder(ME).map(c=>c.w.toLowerCase()));let n=0,skip=0;
+  raw.split('\n').forEach(l=>{const f=l.split(/\t|\|/).map(x=>x.trim());if(!f[0]||!f[1])return;if(have.has(f[0].toLowerCase())){skip++;return}have.add(f[0].toLowerCase());u.custom.push({w:f[0].slice(0,60),z:f[1].slice(0,80),e:(f[2]||'').slice(0,200),ez:(f[3]||'').slice(0,200)});n++});
+  save();toast(`匯入 ${n} 字${skip?`，${skip} 字已存在所以略過`:''}`);vVocab()}
+function listCard(decks){const v=U().vocab;return `<div class="card"><h2>單字表</h2><div class="tabs">${decks.map(([k,n])=>`<button class="${VLIST===k?'on':''}" data-vlist="${k}">${n}</button>`).join('')}</div>
+  ${VLIST?`<table>${decks.find(d=>d[0]===VLIST)[2].map(c=>{const s=v[c.w];return `<tr><td style="width:32%"><b>${esc(c.w)}</b> <span class="muted">${esc(c.p)}</span><div class="muted">${esc(c.z)}</div></td><td style="font-size:13.5px">${esc(c.e)}<div class="muted">${esc(c.ez)}</div></td><td class="muted" style="width:56px">${s?(s.box>=3?'熟記':'學習中'):''}</td></tr>`}).join('')}</table>`:'<p class="muted">點上方按鈕展開單字表。</p>'}</div>`}
+
+// generic quiz runner
+let QZ=null;
+function startQuiz(opts){QZ=Object.assign({i:0,ans:null,score:0,results:[]},opts);if(opts.limit){QZ.end=Date.now()+opts.limit*1000;tick()}drawQuiz()}
+function tick(){clearInterval(window.__t);window.__t=setInterval(()=>{if(!QZ||!QZ.end){clearInterval(window.__t);return}const el=$('#timer');const s=Math.max(0,Math.round((QZ.end-Date.now())/1000));if(el)el.textContent=Math.floor(s/60)+':'+pad(s%60);if(s<=0){clearInterval(window.__t);QZ.timeUp=true;finishQuiz()}},500)}
+function drawQuiz(){const q=QZ.items[QZ.i],key=QZ.ids[QZ.i];
+  const opts=q.o.map((o,i)=>{let cls='';if(QZ.ans!=null){if(i===q.a)cls='ok';else if(i===QZ.ans)cls='bad'}return `<button class="opt ${cls}" data-ans="${i}" ${QZ.ans!=null?'disabled':''}>(${'ABCD'[i]}) ${q.p2&&QZ.ans==null?'':esc(o)}${QZ.ans!=null&&q.oz?`<span class="zh-s">${esc(q.oz[i])}</span>`:''}</button>`}).join('');
+  $(QZ.mount).innerHTML=`<div class="card"><div class="row" style="justify-content:space-between"><b>${esc(QZ.title)}</b><span class="muted">${QZ.limit?'⏱ <span id="timer" class="timer"></span>・':''}${QZ.i+1} / ${QZ.items.length}</span></div>
+  ${q.p2?`<div class="row" style="margin:10px 0"><button class="btn" data-act="playP2">▶ 播放題目</button>${speedCtl()}</div><p class="muted">Part 2 的題目和選項都只用聽的，聽完選出最適當的回應。</p>${QZ.ans!=null?`<div class="script"><p><b>Q:</b> ${esc(q.q)}<span class="zh-s">${esc(q.qz||'')}</span></p></div>`:''}`:`<div class="q">${esc(q.q)}</div>`}
+  <div class="opts">${opts}</div>
+  ${QZ.ans!=null?`<div class="ex">${QZ.ans===q.a?'✅ 答對':'❌ 答錯，已加入錯題本'}｜${esc(q.ex)}${q.z?`<div class="zh-s">中譯：${esc(q.z)}</div>`:''}</div><div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn" data-act="nextQ">${QZ.i+1<QZ.items.length?'下一題':'看結果'}</button></div>`:''}</div>`;
+  if(QZ.ans==null&&q.p2&&QZ.autoplay){QZ.autoplay=false}
+}
+function answer(i){if(QZ.ans!=null)return;const q=QZ.items[QZ.i],key=QZ.ids[QZ.i];QZ.ans=i;const ok=i===q.a;if(ok)QZ.score++;QZ.results.push(ok);
+  const W=U().wrong;if(!ok&&!W.includes(key))W.push(key);if(ok&&QZ.wrongMode){const k=W.indexOf(key);if(k>=0)W.splice(k,1)}save();drawQuiz()}
+function nextQ(){QZ.i++;QZ.ans=null;if(QZ.i>=QZ.items.length)return finishQuiz();drawQuiz();if(QZ.items[QZ.i].p2)playP2()}
+function finishQuiz(){stopSpeak();const z=QZ;QZ=null;clearInterval(window.__t);const n=z.results.length;
+  if(z.scoreKey){const sc=U().scores;sc[z.scoreKey]=Math.max(sc[z.scoreKey]||0,Math.round(z.score/z.items.length*100))}
+  if(z.task)markDone(z.task);save();
+  $(z.mount).innerHTML=`<div class="card" style="text-align:center"><h2>${z.timeUp?'時間到！':'完成！'}</h2><div class="big">${z.score} / ${z.items.length}</div><p class="muted">${z.timeUp?`作答 ${n} 題。正式考試的節奏也是這樣，沒把握的題目先猜、不要卡住。`:''}答錯的題目都收進了錯題本，週日記得複習。</p><button class="btn ghost" data-act="back">回上一頁</button></div>`}
+function playP2(){if(!QZ)return;const q=QZ.items[QZ.i];say([{text:q.q,voice:'rounded'},...q.o.map((o,i)=>({text:'ABC'[i]+'. '+o,voice:'airy'}))])}
+
+function vGrammar(){
+  if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  const w=weekOf(TODAY),cur=unitOf(w),sc=U().scores;
+  V(`<div id="qmount"></div><div class="card"><h2>文法單元（Part 5 題型）</h2><p class="muted">本週單元已標黑。每個單元先讀重點（3 分鐘），再做題目。分數會記錄最高分。</p>
+  ${GRAMMAR.map((g,i)=>`<div class="unit"><div class="n ${i===cur?'now':''}">${i+1}</div><div style="flex:1">${esc(g.t)}${sc['g'+i]!=null?` <span class="pill">最高 ${sc['g'+i]}%</span>`:''}</div><button class="btn sm ${i===cur?'':'ghost'}" data-unit="${i}">學習</button></div>`).join('')}</div>`);
+}
+function openUnit(i){const g=GRAMMAR[i];$('#qmount').innerHTML=`<div class="card"><h2>Unit ${i+1}｜${esc(g.t)}</h2><div class="lesson">${g.l}</div><div class="row" style="margin-top:12px"><button class="btn" data-quiz-unit="${i}">開始做題（${g.qs.length} 題）</button></div></div>`;scrollTo(0,0)}
+function quizUnit(i){const g=GRAMMAR[i];const idx=shuffle(g.qs.map((_,k)=>k));startQuiz({mount:'#qmount',title:'Unit '+(i+1)+'｜'+g.t,items:idx.map(k=>g.qs[k]),ids:idx.map(k=>'g'+i+'_'+k),scoreKey:'g'+i,task:i===unitOf(weekOf(TODAY))?'grammar':null})}
+
+let LTAB='p2';
+function vListen(){
+  if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  const head=`<div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">聽力練習</h2>${speedCtl()}</div>
+  <p class="muted" style="margin-bottom:0">語音由系統朗讀，不同說話者用不同聲音。基礎路線建議先用「慢速」。真正的考試有美、英、加、澳四種口音，第 21 週後請搭配官方試題書的音檔。</p></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><div><h2 style="margin:0">🎧 通勤連播</h2><div class="muted">連續播放 Part 2 問答（只播正解）和 Part 3/4 對話，適合搭車、走路時讓耳朵習慣英文。</div></div><div class="row"><button class="btn" data-act="commute">播放</button><button class="btn ghost sm" data-act="stop">■ 停止</button></div></div></div>
+  <div class="tabs">${[['p2','Part 2 應答'],['p3','Part 3 對話'],['p4','Part 4 獨白']].map(([k,v])=>`<button class="${LTAB===k?'on':''}" data-ltab="${k}">${v}</button>`).join('')}</div><div id="qmount"></div>`;
+  if(LTAB==='p2'){V(head);$('#qmount').innerHTML=`<div class="card"><h2>Part 2：應答問題</h2><p>每次隨機 5 題。拿分重點：<b>聽清楚第一個字</b>（Who/When/Where/Why/How），並小心「相同或相似發音」的陷阱選項。</p><button class="btn" data-act="p2go">開始 5 題</button></div>`;return}
+  const part=LTAB==='p3'?3:4;V(head+SETS_LISTEN.filter(s=>s.part===part).map(s=>setCard(s,'listen')).join(''));
+}
+function commute(){const lines=[];shuffle(PART2).slice(0,10).forEach(q=>{lines.push({text:q.q,voice:'rounded'},{text:q.o[q.a],voice:'airy'})});
+  shuffle(SETS_LISTEN).forEach(st=>st.lines.forEach(l=>lines.push({text:l.text,voice:VOICES[l.s]})));toast('開始連播，約 6 分鐘');say(lines)}
+function startP2(){const idx=shuffle(PART2.map((_,i)=>i)).slice(0,5);startQuiz({mount:'#qmount',title:'Part 2 應答問題',items:idx.map(i=>QBANK['p2_'+i]),ids:idx.map(i=>'p2_'+i),scoreKey:'p2',task:peekLog(ME,TODAY).busy?'listen':null});setTimeout(playP2,300)}
+
+const SETSTATE={};
+function setCard(s,kind){const st=SETSTATE[s.id]||(SETSTATE[s.id]={ans:{},checked:false,showScript:false});const done=U().scores[s.id];
+  const tip=kind==='listen'?'<p class="muted">技巧：按播放前先把三個題目讀過一遍，邊聽邊找答案。</p>':'<p class="muted">技巧：先看題目，帶著問題回文章找關鍵字，不要從頭精讀。</p>';
+  return `<div class="card" id="set_${s.id}"><div class="row" style="justify-content:space-between"><h2 style="margin:0">${esc(s.title)}</h2>${done!=null?`<span class="pill">最高 ${done}%</span>`:''}</div>${tip}
+  ${kind==='listen'?`<div class="row"><button class="btn" data-play="${s.id}">▶ 播放</button><button class="btn ghost sm" data-act="stop">■ 停止</button><button class="btn ghost sm" data-script="${s.id}">${st.showScript?'隱藏':'看'}文字稿</button></div>
+  ${st.showScript||st.checked?`<div class="script" style="margin-top:10px">${s.lines.map(l=>`<p><b>${l.s==='N'?'':l.s==='M2'?'Man 2':l.s==='W'?'Woman':'Man'}${l.s==='N'?'':':'}</b> ${esc(l.text)}<span class="zh-s">${esc(l.z||'')}</span></p>`).join('')}</div>`:''}`:`<div class="passage">${esc(s.passage)}</div>
+  <div class="row" style="margin-top:8px"><button class="btn ghost sm" data-ptrans="${s.id}">${st.showTrans?'隱藏':'看'}全文中譯</button><span class="muted">${st.checked?'':'建議先作答再看中譯'}</span></div>
+  ${st.showTrans?`<div class="passage" style="background:#f7f5ef;margin-top:8px">${esc(s.pz||'')}</div>`:''}`}
+  <div class="qset">${s.qs.map((q,qi)=>`<div style="margin-bottom:14px"><div class="q" style="font-size:15px">${qi+1}. ${esc(q.q)}${st.checked&&q.qz?`<span class="zh-s">${esc(q.qz)}</span>`:''}</div><div class="opts">${q.o.map((o,oi)=>{let c='';if(st.checked){if(oi===q.a)c='ok';else if(st.ans[qi]===oi)c='bad'}else if(st.ans[qi]===oi)c='pick';return `<button class="opt ${c}" data-set="${s.id}" data-qi="${qi}" data-oi="${oi}" ${st.checked?'disabled':''}>(${'ABCD'[oi]}) ${esc(o)}${st.checked&&q.oz?`<span class="zh-s">${esc(q.oz[oi])}</span>`:''}</button>`}).join('')}</div>${st.checked?`<div class="ex">${esc(q.ex)}</div>`:''}</div>`).join('')}
+  <div class="row" style="justify-content:flex-end">${st.checked?`<button class="btn ghost" data-reset="${s.id}">重做</button>`:`<button class="btn" data-check="${s.id}" data-kind="${kind}">對答案</button>`}</div></div></div>`}
+function allSets(){return SETS_LISTEN.concat(SETS_READ)}
+function redrawSet(id){const s=allSets().find(x=>x.id===id),kind=s.lines?'listen':'read';const el=$('#set_'+id);if(el)el.outerHTML=setCard(s,kind)}
+function checkSet(id){const s=allSets().find(x=>x.id===id),st=SETSTATE[id];if(Object.keys(st.ans).length<s.qs.length){toast('還有題目沒作答');return}
+  st.checked=true;let sc=0;const W=U().wrong;s.qs.forEach((q,qi)=>{const k=id+'_'+qi;if(st.ans[qi]===q.a)sc++;else if(!W.includes(k))W.push(k)});
+  U().scores[id]=Math.max(U().scores[id]||0,Math.round(sc/s.qs.length*100));
+  markDone(s.lines?'listen':'read');save();redrawSet(id);toast(`答對 ${sc} / ${s.qs.length}`)}
+allSets().forEach(s=>s.qs.forEach((q,qi)=>QBANK[s.id+'_'+qi]={...q,src:s.title,ctx:s}));
+
+function vRead(){if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  V(`<div class="card"><h2>閱讀 Part 6／Part 7</h2><p class="muted" style="margin:0">Part 6 考文意連貫（連接副詞、時態、句子插入）；Part 7 考找資訊的速度。考試時 Part 7 要留約 55 分鐘。${U().track==='base'?'基礎路線：前 10 週以 Part 6 和單篇為主就好。':''}</p></div>`+SETS_READ.map(s=>setCard(s,'read')).join(''))}
+
+function vMock(){if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  V(`<div id="qmount"><div class="card"><h2>迷你模考</h2><p>從所有文法單元隨機抽題，<b>限時作答</b>，練習考試的節奏。正式考試閱讀 75 分鐘 100 題，Part 5 每題目標 20–30 秒。</p>
+  <div class="grid2"><div class="phase" style="margin:0"><b>Part 5 快速 12 題</b><div class="muted">限時 6 分鐘（每題 30 秒）</div><button class="btn" style="margin-top:8px" data-mock="12">開始</button></div>
+  <div class="phase" style="margin:0"><b>Part 5 挑戰 20 題</b><div class="muted">限時 8 分鐘（每題 24 秒，接近實戰速度）</div><button class="btn" style="margin-top:8px" data-mock="20">開始</button></div></div>
+  ${U().scores.mock!=null?`<p class="muted">歷史最高：${U().scores.mock}%</p>`:''}</div></div>`)}
+function startMock(n){const keys=shuffle(Object.keys(QBANK).filter(k=>k[0]==='g')).slice(0,n);startQuiz({mount:'#qmount',title:`迷你模考 Part 5 × ${n}`,items:keys.map(k=>QBANK[k]),ids:keys,scoreKey:'mock',task:'mock',limit:n===12?360:480})}
+
+function vWrong(){if(!ME)return V('<div class="card">請先選擇你是誰。</div>');
+  const W=U().wrong.filter(k=>QBANK[k]);
+  if(!W.length)return V(`<div class="card"><h2>錯題本</h2><p class="muted">目前沒有錯題。做文法、聽力、閱讀練習時答錯的題目會自動收集到這裡。</p></div>`);
+  const solo=W.filter(k=>!QBANK[k].ctx);
+  V(`<div id="qmount"></div><div class="card"><div class="row" style="justify-content:space-between"><h2 style="margin:0">錯題本（${W.length} 題）</h2>${solo.length?`<button class="btn" data-act="wrongQuiz">重做錯題（${solo.length}）</button>`:''}</div>
+  <p class="muted">重做答對就會從錯題本移除。比起寫新題目，<b>搞懂為什麼錯</b>才是進步最快的方式。</p>
+  ${W.map(k=>{const q=QBANK[k];return `<div class="task" style="display:block"><div class="muted">${esc(q.src)}</div><div>${esc(q.q)}<span class="zh-s">${esc(q.z||q.qz||'')}</span></div><div class="muted">正解：(${'ABCD'[q.a]}) ${esc(q.o[q.a])}${q.oz?'（'+esc(q.oz[q.a])+'）':''}｜${esc(q.ex)}</div>${q.ctx?`<div class="row" style="margin-top:4px"><a class="btn sm ghost" style="text-decoration:none" href="#${q.ctx.lines?'listen':'read'}" data-goset="${q.ctx.id}">回原題組重做</a><button class="btn sm ghost" data-rmw="${k}">已理解，移除</button></div>`:''}</div>`}).join('')}</div>`)}
+function wrongQuiz(){const keys=shuffle(U().wrong.filter(k=>QBANK[k]&&!QBANK[k].ctx)).slice(0,15);startQuiz({mount:'#qmount',title:'錯題重做',items:keys.map(k=>QBANK[k]),ids:keys,wrongMode:true,task:'wrong'});scrollTo(0,0);if(keys.length&&QBANK[keys[0]].p2)setTimeout(playP2,300)}
+
+// ---------- events ----------
+document.addEventListener('click',e=>{const t=e.target.closest('button,a,[data-act]');if(!t)return;const d=t.dataset;
+  if(d.who){ME=d.who;LS.set('toeic6m_me',ME);VS=null;QZ=null;render();return}
+  if(d.pick){ME=d.pick;LS.set('toeic6m_me',ME);closeModal();render();return}
+  if(d.rate){RATE=+d.rate;LS.set('toeic6m_rate',RATE);document.querySelectorAll('[data-rate]').forEach(b=>b.classList.toggle('on',+b.dataset.rate===RATE));try{TTS&&TTS.setRate(RATE)}catch(x){}return}
+  if(d.toggle){const L=logOf(ME,TODAY),i=L.done.indexOf(d.toggle);i>=0?L.done.splice(i,1):L.done.push(d.toggle);save();render();return}
+  if(d.say){say([{text:d.say,voice:'buttery'}]);return}
+  if(d.rateCard!=null){rateCard(+d.rateCard);return}
+  if(d.unit!=null){openUnit(+d.unit);return}
+  if(d.quizUnit!=null){quizUnit(+d.quizUnit);return}
+  if(d.ans!=null&&QZ){answer(+d.ans);return}
+  if(d.ltab){LTAB=d.ltab;stopSpeak();render();return}
+  if(d.play){const s=SETS_LISTEN.find(x=>x.id===d.play);say(s.lines.map(l=>({text:l.text,voice:VOICES[l.s]})));return}
+  if(d.script){SETSTATE[d.script].showScript=!SETSTATE[d.script].showScript;redrawSet(d.script);return}
+  if(d.set){const st=SETSTATE[d.set];if(st.checked)return;st.ans[+d.qi]=+d.oi;redrawSet(d.set);return}
+  if(d.check){checkSet(d.check);return}
+  if(d.reset){SETSTATE[d.reset]={ans:{},checked:false,showScript:false};redrawSet(d.reset);return}
+  if(d.ptrans){const st=SETSTATE[d.ptrans];st.showTrans=!st.showTrans;redrawSet(d.ptrans);return}
+  if(d.vlist){VLIST=VLIST===d.vlist?'':d.vlist;vVocab();return}
+  if(d.mock){startMock(+d.mock);return}
+  if(d.rmw){const W=U().wrong,i=W.indexOf(d.rmw);if(i>=0)W.splice(i,1);save();render();return}
+  if(d.goset){const id=d.goset;if(SETS_LISTEN.find(s=>s.id===id))LTAB=SETS_LISTEN.find(s=>s.id===id).part===3?'p3':'p4';SETSTATE[id]={ans:{},checked:false,showScript:false};setTimeout(()=>{const el=$('#set_'+id);el&&el.scrollIntoView({block:'start'})},60);return}
+  const a=d.act;if(!a)return;
+  const ACTS={sync,settings,saveSettings,startVocab,
+    flip(){VS.flip=!VS.flip;vVocab()},
+    busy(){const L=logOf(ME,TODAY);L.busy=!L.busy;save();render()},
+    nextQ,playP2,stop:stopSpeak,p2go:startP2,
+    back(){render()},wrongQuiz,importWords,commute,exportCode,importCode,applyCode};
+  if(ACTS[a])ACTS[a]();
+});
+window.addEventListener('hashchange',()=>{VIEW=(location.hash||'#today').slice(1);stopSpeak();QZ=null;VS=VS&&VS.i<VS.q.length?VS:null;clearInterval(window.__t);render();scrollTo(0,0)});
+
+// restore view after a sync reload
+try{const sv=sessionStorage.getItem('toeic6m_view');if(sv){sessionStorage.removeItem('toeic6m_view');VIEW=sv;if(location.hash.slice(1)!==sv)history.replaceState(null,'','#'+sv)}}catch(e){}
+render();
+if(!ME)pickWho();
+
+if(window.claude&&typeof claude.use==='function'){
+  claude.use('artifact').then(a=>{ART=a;if(!a){HOSTED=false;renderSync()}}).catch(()=>{});
+  claude.use('tts').then(t=>{TTS=t}).catch(()=>{});
+}
+})();
+</script>
+</body></html>
